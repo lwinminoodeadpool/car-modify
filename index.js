@@ -4,7 +4,7 @@
 const
   express = require('express'),
   bodyParser = require('body-parser'),
-  
+  requestify = require('requestify'),
   app = express().use(bodyParser.json()); // creates express http server
 
   const pageaccesstoken = 'EAAhuvKStHYYBAFXWPhJgUuEwHCovYF7LzBiuZAa2BMT2ijS44fkqZBvZBUhLZBU7GmTZCvpEz6F1Qz0xMSEj0AOuHp4owr8StVVYoylQQzkQlkxZBeT2hMaU2Q0epMilPMXWRwZBHuHhUrIhiJKVzXFqZCsZBaDEoZBtv6zGT1zgR0bwDIUoZByt6Wj'
@@ -54,6 +54,30 @@ app.post('/webhook', (req, res) => {
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
         console.log(webhook_event);
+        var userInput = webhook_event.message.text;
+
+        if (userInput == 'Hi'){
+            requestify.post('https://graph.facebook.com/v4.0/me/messages?access_token='+pageaccesstoken,
+            {
+                "recipient":{
+                    "id": webhook_event.sender.id
+                },
+                "message":{
+                    "attachment":{
+                        "type":"template",
+                        "payload": {
+                        "template_type":"button",
+                        "text":"Hello",
+                        "buttons":[{
+                            "type":"postback",
+                            "title":"next stage",
+                            "payload":"something"
+                        }]
+                        }
+                    }
+                }
+            })
+        }
       });
   
       // Returns a '200 OK' response to all requests
