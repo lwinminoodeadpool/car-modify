@@ -118,17 +118,17 @@ app.post('/webhook', (req, res) => {
             }
           }
 
-          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, {
+          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
             welcomeMessage
-          }).then( response => {
+          ).then( response => {
             console.log(response)
           }).fail( error => {
             console.log(error)
           })
 
-          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, {
+          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
             genericMessage
-          }).then( response => {
+          ).then( response => {
             console.log(response)
           }).fail( error => {
             console.log(error)
