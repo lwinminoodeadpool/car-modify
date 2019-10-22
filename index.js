@@ -117,18 +117,20 @@ app.post('/webhook', (req, res) => {
             }
           }
 
-          request.post({url:`https://graph.facebook.com/v4.0/me/messages?access_token=${pageaccesstoken}`, formData: welcomeMessage}, function optionalCallback(err, httpResponse, body) {
-            if (err) {
-              return console.error('welcome failed:', err);
-            }
-            console.log('welcomeMessage successful!  Server responded with:', body);
+          request.post({
+            headers: {'content-type' : 'application/json'},
+            url:     `https://graph.facebook.com/v4.0/me/messages?access_token=${pageaccesstoken}`,
+            body:    welcomeMessage
+          }, function(error, response, body){
+            console.log('welcomeMessage: ',body);
           });
 
-          request.post({url:`https://graph.facebook.com/v4.0/me/messages?access_token=${pageaccesstoken}`, formData: genericMessage}, function optionalCallback(err, httpResponse, body) {
-            if (err) {
-              return console.error('generic failed:', err);
-            }
-            console.log('genericMessage successful!  Server responded with:', body);
+          request.post({
+            headers: {'content-type' : 'application/json'},
+            url:     `https://graph.facebook.com/v4.0/me/messages?access_token=${pageaccesstoken}`,
+            body:    genericMessage
+          }, function(error, response, body){
+            console.log('genericMessage: ', body);
           });
         
         }
