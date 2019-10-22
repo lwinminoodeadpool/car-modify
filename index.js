@@ -118,7 +118,7 @@ app.post('/webhook', (req, res) => {
           }
 
           request({
-            url:     `https://graph.facebook.com/v4.0/me/messages?access_token=${pageaccesstoken}`,
+            url:     `https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`,
             method: 'POST',
             json: welcomeMessage
           }, function(error, response, body){
@@ -126,7 +126,7 @@ app.post('/webhook', (req, res) => {
           });
 
           request({
-            url:     `https://graph.facebook.com/v4.0/me/messages?access_token=${pageaccesstoken}`,
+            url:     `https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`,
             method: 'POST',
             json: genericMessage
           }, function(error, response, body){
