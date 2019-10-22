@@ -117,8 +117,7 @@ app.post('/webhook', (req, res) => {
             }
           }
 
-          request.post({
-            headers: {'content-type' : 'application/json'},
+          request({
             url:     `https://graph.facebook.com/v4.0/me/messages?access_token=${pageaccesstoken}`,
             method: 'POST',
             json: welcomeMessage
@@ -126,8 +125,7 @@ app.post('/webhook', (req, res) => {
             console.log('welcomeMessage: ',body);
           });
 
-          request.post({
-            headers: {'content-type' : 'application/json'},
+          request({
             url:     `https://graph.facebook.com/v4.0/me/messages?access_token=${pageaccesstoken}`,
             method: 'POST',
             json: genericMessage
