@@ -8,7 +8,29 @@ const
   app = express().use(bodyParser.json()); // creates express http server
 
   const pageaccesstoken = 'EAAhuvKStHYYBAOHm6Vs1W8z7cJEpENZAd7CikWpIyHz5Nw1BbT9juT8sLqbdZCwlaINPxC51HPE3eZAuHZCSkIi6nXI7lVdQCUovw5pRjRZCUcAviaevVNAMXh0bQsEtkdzDJmfHY8GEnM2rfy3Car1ihPhu59w0XrvOJQXxKTIS0JsbJvXU8'
-// Sets server port and logs message on success
+
+  requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
+  {
+    "get_started": {
+      "payload": "Hi"
+    },
+    "greeting": [
+      {
+        "locale":"default",
+        "text":"Hello {{user_first_name}}!" 
+      }, {
+        "locale":"en_US",
+        "text":"Timeless apparel for the masses."
+      }
+    ]
+  }
+).then( response => {
+  console.log(response)
+}).fail( error => {
+  console.log(error)
+})
+
+  // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
 // Adds support for GET requests to our webhook
@@ -56,7 +78,7 @@ app.post('/webhook', (req, res) => {
         console.log(webhook_event);
         var userInput = webhook_event.message.text;
 
-        if (userInput == 'Hi'){
+        if (userInput == 'Hi' || webhook_event.postback.payload == 'Hi' ){
           console.log('within Hi')
           let welcomeMessage = {
             "recipient":{
