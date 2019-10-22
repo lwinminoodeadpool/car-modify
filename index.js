@@ -140,7 +140,7 @@ app.post('/webhook', (req, res) => {
                     },
                     {
                       "title":"Car part trade",
-                      "image_url":"https://www.drivemyanmar.com/wp-content/uploads/2017/12/car-drift3.jpg",
+                      "image_url":"http://nic.trade/img/trade.png",
                       "subtitle":"car part trade for same car part",                      
                       "buttons":[
                         {
