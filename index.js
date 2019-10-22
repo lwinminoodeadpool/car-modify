@@ -111,13 +111,13 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "Suggect for car body kit shop",
+                          "title": "bodykit shops",
                           "payload": "bodykit"
                         },
                         {
                           "type": "postback",
-                          "title": "Car interior mod shop suggection",
-                          "payload": "Sink"
+                          "title": "Car interior shops",
+                          "payload": "interior"
                         }
                       ]      
                     },
@@ -128,13 +128,13 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "who cares",
-                          "payload": "ok"
+                          "title": "Performance build shop",
+                          "payload": "performance"
                         },
                         {
                           "type": "postback",
-                          "title": "hello",
-                          "payload": "hello"
+                          "title": "Drift build",
+                          "payload": "drift"
                         }
                       ]      
                     }
