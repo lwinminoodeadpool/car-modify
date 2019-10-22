@@ -76,6 +76,10 @@ app.post('/webhook', (req, res) => {
                         }
                     }
                 }
+            }).then( success => {
+              console.log(success)
+            }).then( error => {
+              console.log(error)
             })
         }
       });
