@@ -137,6 +137,18 @@ app.post('/webhook', (req, res) => {
                           "payload": "drift"
                         }
                       ]      
+                    },
+                    {
+                      "title":"Car part trade",
+                      "image_url":"https://www.drivemyanmar.com/wp-content/uploads/2017/12/car-drift3.jpg",
+                      "subtitle":"car part trade for same car part",                      
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "Car part trade",
+                          "payload": "Trade"
+                        }
+                      ]      
                     }
                   ] 
                 }
