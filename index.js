@@ -70,7 +70,7 @@ app.post('/webhook', (req, res) => {
 
           let genericMessage = {
             "recipient":{
-              "id":"<PSID>"
+              "id":webhook_event.sender.id
             },
             "message":{
               "attachment":{
