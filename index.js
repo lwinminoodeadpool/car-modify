@@ -78,8 +78,8 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                      "title":"Titanic",
-                      "subtitle":"Sinking please help!",
+                      "title":"Car Beautify",
+                      "subtitle":"Suggection for car beautify",
                       "image_url":"https://i.ytimg.com/vi/JilHZ_DdBYg/maxresdefault.jpg",
                       "buttons":[
                         {
@@ -95,9 +95,9 @@ app.post('/webhook', (req, res) => {
                       ]      
                     },
                     {
-                      "title":"Hello",
+                      "title":"Performance Build",
                       "image_url":"https://i.ytimg.com/vi/JilHZ_DdBYg/maxresdefault.jpg",
-                      "subtitle":"Hi",                      
+                      "subtitle":"Performance build suggection",                      
                       "buttons":[
                         {
                           "type": "postback",
