@@ -57,6 +57,7 @@ app.post('/webhook', (req, res) => {
         var userInput = webhook_event.message.text;
 
         if (userInput == 'Hi'){
+          console.log('within Hi')
             requestify.post('https://graph.facebook.com/v4.0/me/messages?access_token='+pageaccesstoken,
             {
                 "recipient":{
