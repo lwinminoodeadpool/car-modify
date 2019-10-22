@@ -8,7 +8,7 @@ const
   requestify = require('requestify'),
   app = express().use(bodyParser.json()); // creates express http server
 
-  const pageaccesstoken = 'EAAhuvKStHYYBAFXWPhJgUuEwHCovYF7LzBiuZAa2BMT2ijS44fkqZBvZBUhLZBU7GmTZCvpEz6F1Qz0xMSEj0AOuHp4owr8StVVYoylQQzkQlkxZBeT2hMaU2Q0epMilPMXWRwZBHuHhUrIhiJKVzXFqZCsZBaDEoZBtv6zGT1zgR0bwDIUoZByt6Wj'
+  const pageaccesstoken = 'EAAhuvKStHYYBAOHm6Vs1W8z7cJEpENZAd7CikWpIyHz5Nw1BbT9juT8sLqbdZCwlaINPxC51HPE3eZAuHZCSkIi6nXI7lVdQCUovw5pRjRZCUcAviaevVNAMXh0bQsEtkdzDJmfHY8GEnM2rfy3Car1ihPhu59w0XrvOJQXxKTIS0JsbJvXU8'
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
