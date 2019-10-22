@@ -76,9 +76,8 @@ app.post('/webhook', (req, res) => {
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
         console.log(webhook_event);
-        var userInput = webhook_event.message.text;
-
-        if (userInput == 'Hi' || webhook_event.postback.payload == 'Hi' ){
+        
+        if (webhook_event.message.text == 'Hi' || webhook_event.postback.payload == 'Hi' ){
           console.log('within Hi')
           let welcomeMessage = {
             "recipient":{
