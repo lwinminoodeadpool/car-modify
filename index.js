@@ -4,7 +4,6 @@
 const
   express = require('express'),
   bodyParser = require('body-parser'),
-  request = require('request'),
   requestify = require('requestify'),
   app = express().use(bodyParser.json()); // creates express http server
 
@@ -64,7 +63,7 @@ app.post('/webhook', (req, res) => {
               "id":webhook_event.sender.id
             },
             "message":{
-              "text":"hello, world!"
+              "text":"Hello, Welcome to Curious Wheel!"
             }
           };
 
@@ -133,22 +132,6 @@ app.post('/webhook', (req, res) => {
           }).fail( error => {
             console.log(error)
           })
-
-          /*request({
-            url:     `https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`,
-            method: 'POST',
-            json: welcomeMessage
-          }, function(error, response, body){
-            console.log('welcomeMessage: ',body);
-          });
-
-          request({
-            url:     `https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`,
-            method: 'POST',
-            json: genericMessage
-          }, function(error, response, body){
-            console.log('genericMessage: ', body);
-          });*/
         
         }
       });
