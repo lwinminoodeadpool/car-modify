@@ -5,6 +5,7 @@ const
   express = require('express'),
   bodyParser = require('body-parser'),
   request = require('request'),
+  requestify = require('requestify'),
   app = express().use(bodyParser.json()); // creates express http server
 
   const pageaccesstoken = 'EAAhuvKStHYYBAFXWPhJgUuEwHCovYF7LzBiuZAa2BMT2ijS44fkqZBvZBUhLZBU7GmTZCvpEz6F1Qz0xMSEj0AOuHp4owr8StVVYoylQQzkQlkxZBeT2hMaU2Q0epMilPMXWRwZBHuHhUrIhiJKVzXFqZCsZBaDEoZBtv6zGT1zgR0bwDIUoZByt6Wj'
@@ -117,7 +118,23 @@ app.post('/webhook', (req, res) => {
             }
           }
 
-          request({
+          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, {
+            welcomeMessage
+          }).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+
+          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, {
+            genericMessage
+          }).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+
+          /*request({
             url:     `https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`,
             method: 'POST',
             json: welcomeMessage
@@ -131,7 +148,7 @@ app.post('/webhook', (req, res) => {
             json: genericMessage
           }, function(error, response, body){
             console.log('genericMessage: ', body);
-          });
+          });*/
         
         }
       });
