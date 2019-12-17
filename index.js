@@ -7,7 +7,7 @@ const
   requestify = require('requestify'),
   app = express().use(bodyParser.json()); // creates express http server
 
-  const pageaccesstoken = 'EAAhuvKStHYYBAOHm6Vs1W8z7cJEpENZAd7CikWpIyHz5Nw1BbT9juT8sLqbdZCwlaINPxC51HPE3eZAuHZCSkIi6nXI7lVdQCUovw5pRjRZCUcAviaevVNAMXh0bQsEtkdzDJmfHY8GEnM2rfy3Car1ihPhu59w0XrvOJQXxKTIS0JsbJvXU8'
+  const pageaccesstoken = 'EAAhuvKStHYYBAGlNOrocB252IZCCSpmsLQQtQ6eN1crbAFVtN0OZBQjusfCN6GogryhDDt63YJDesFYOKVi9QmEZBPYKBZBkEbUyRPwkSgDJOLwPpunsERnMS5WOsosHZAcfs4wxixT4ZBWSQUCah35fVQwuo912zu4gs0lWje7HSG3XaAZCpMa'
 
   requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
   {
@@ -84,7 +84,6 @@ app.post('/webhook', (req, res) => {
         }
         
         if (userInput == 'Hi' || userButton == 'Hi' ){
-          console.log('within Hi')
           let welcomeMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -172,6 +171,79 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         
+        }
+
+        if(userButton == 'bodykit'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text": "Please choose bodykit type",
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"Car Beautify",
+                      "subtitle":"Suggection for car beautify",
+                      "image_url":"http://www.myanmarcarmarketplace.com/oc-content/uploads/0/315_preview.jpg",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "bodykit shops",
+                          "payload": "bodykit"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "Car interior shops",
+                          "payload": "interior"
+                        }
+                      ]      
+                    },
+                    {
+                      "title":"Performance Build",
+                      "image_url":"https://www.drivemyanmar.com/wp-content/uploads/2017/12/car-drift3.jpg",
+                      "subtitle":"Performance build suggection",                      
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "Performance build",
+                          "payload": "performance"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "Drift build",
+                          "payload": "drift"
+                        }
+                      ]      
+                    },
+                    {
+                      "title":"Car part trade",
+                      "image_url":"http://nic.trade/img/trade.png",
+                      "subtitle":"car part trade for same car part",                      
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "Car part trade",
+                          "payload": "Trade"
+                        }
+                      ]      
+                    }
+                  ] 
+                }
+              }
+            }
+          }
+
+          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
         }
       });
   
