@@ -179,7 +179,6 @@ app.post('/webhook', (req, res) => {
               "id":webhook_event.sender.id
             },
             "message":{
-              "text": "Please choose bodykit type",
               "attachment":{
                 "type":"template",
                 "payload":{
