@@ -99,7 +99,7 @@ app.post('/webhook', (req, res) => {
             },
             "message":{
               "attachment":{
-                "t=ype":"template",
+                "type":"template",
                 "payload":{
                   "template_type":"generic",
                   "elements":[
