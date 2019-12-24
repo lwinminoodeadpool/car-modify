@@ -7,7 +7,7 @@ const
   requestify = require('requestify'),
   app = express().use(bodyParser.json()); // creates express http server
 
-  const pageaccesstoken = 'EAAhuvKStHYYBAGlNOrocB252IZCCSpmsLQQtQ6eN1crbAFVtN0OZBQjusfCN6GogryhDDt63YJDesFYOKVi9QmEZBPYKBZBkEbUyRPwkSgDJOLwPpunsERnMS5WOsosHZAcfs4wxixT4ZBWSQUCah35fVQwuo912zu4gs0lWje7HSG3XaAZCpMa'
+  const pageaccesstoken = 'EAAhuvKStHYYBAJKm5YDKBgWFaOep8wuppmKdTRZB1e9XThEGG1dX2ZCtV26D5xwz8mAjxlHzo3TeIHQNIqpDzr77y5DWjlXjVvgCQgqINgPNgr31GYwXYOGpC1RtFXMEj3Mpej5en5VjTh6NxBKevWcZCdLjaUnPBIG9ojZCTRQhl73ZCkyaQ'
 
   requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
   {
@@ -99,7 +99,7 @@ app.post('/webhook', (req, res) => {
             },
             "message":{
               "attachment":{
-                "type":"template",
+                "t=ype":"template",
                 "payload":{
                   "template_type":"generic",
                   "elements":[
