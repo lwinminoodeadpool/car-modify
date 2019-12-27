@@ -191,47 +191,16 @@ app.post('/webhook', (req, res) => {
                   "elements":[
                     {
                       "title":"Car Beautify",
-                      "subtitle":"Suggection for car beautify",
-                      "image_url":"http://www.myanmarcarmarketplace.com/oc-content/uploads/0/315_preview.jpg",
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "bodykit shops",
-                          "payload": "bodykit"
+                          "title": "popular carbody kit",
+                          "payload": "pkt"
                         },
                         {
                           "type": "postback",
                           "title": "Car interior shops",
                           "payload": "interior"
-                        }
-                      ]      
-                    },
-                    {
-                      "title":"Performance Build",
-                      "image_url":"https://www.drivemyanmar.com/wp-content/uploads/2017/12/car-drift3.jpg",
-                      "subtitle":"Performance build suggection",                      
-                      "buttons":[
-                        {
-                          "type": "postback",
-                          "title": "Performance build",
-                          "payload": "performance"
-                        },
-                        {
-                          "type": "postback",
-                          "title": "Drift build",
-                          "payload": "drift"
-                        }
-                      ]      
-                    },
-                    {
-                      "title":"Car part trade",
-                      "image_url":"http://nic.trade/img/trade.png",
-                      "subtitle":"car part trade for same car part",                      
-                      "buttons":[
-                        {
-                          "type": "postback",
-                          "title": "Car part trade",
-                          "payload": "Trade"
                         }
                       ]      
                     }
