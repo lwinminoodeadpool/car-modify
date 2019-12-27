@@ -103,23 +103,25 @@ app.post('/webhook', (req, res) => {
                 "payload":{
                   "template_type":"generic",
                   "elements":[
-                    {
+                    {// start of car beautify 
                       "title":"Car Beautify",
                       "subtitle":"Suggection for car beautify",
                       "image_url":"http://www.myanmarcarmarketplace.com/oc-content/uploads/0/315_preview.jpg",
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "bodykit shops",
+                          "title": "car body kit",
                           "payload": "bodykit"
                         },
                         {
                           "type": "postback",
-                          "title": "Car interior shops",
+                          "title": "Car interior",
                           "payload": "interior"
                         }
                       ]      
                     },
+                    //end of beautify 
+                    //start of performance build and drift build
                     {
                       "title":"Performance Build",
                       "image_url":"https://www.drivemyanmar.com/wp-content/uploads/2017/12/car-drift3.jpg",
@@ -137,6 +139,8 @@ app.post('/webhook', (req, res) => {
                         }
                       ]      
                     },
+                    //end of car performance build and drif build 
+                    //start of car parts trade
                     {
                       "title":"Car part trade",
                       "image_url":"http://nic.trade/img/trade.png",
@@ -149,6 +153,7 @@ app.post('/webhook', (req, res) => {
                         }
                       ]      
                     }
+                    //end of car part trade
                   ] 
                 }
               }
