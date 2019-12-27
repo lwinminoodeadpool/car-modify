@@ -325,6 +325,27 @@ app.post('/webhook', (req, res) => {
                         }
 
                       ]      
+                    },
+                    {
+                      "title":"interior modified shops location",                     
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "Sule",
+                          "payload": "Trade"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "Sanchaung",
+                          "payload": "Trade"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "tarmwe",
+                          "payload": "Trade"
+                        }
+
+                      ]      
                     }
                   ] 
                 }
