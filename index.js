@@ -272,6 +272,76 @@ app.post('/webhook', (req, res) => {
         }
         //end of popular carbody kit 
 
+        //start car interior 
+        if(userButton == 'interior'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"interior modified suggestion",                    
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "Seats",
+                          "payload": "seats"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "steering",
+                          "payload": "steering"
+                        },
+                        {
+                          "type":"postback",
+                          "title":"window flims",
+                          "payload":"windowf"
+                        }
+                      ]      
+                    },
+                   
+                    {
+                      "title":"interior modified suggestion",                     
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "aaa",
+                          "payload": "Trade"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "aaa",
+                          "payload": "Trade"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "aaa",
+                          "payload": "Trade"
+                        }
+
+                      ]      
+                    }
+                  ] 
+                }
+              }
+            }
+          }
+
+
+          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+
       });
   
       // Returns a '200 OK' response to all requests
