@@ -194,7 +194,7 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "popular carbody kit",
+                          "title": "popular carbody mod",
                           "payload": "pkt"
                         },
                         {
@@ -235,25 +235,63 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                      "title":"please choose your car brand .",
+                      "title":"car-body kit",
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "Toyota",
-                          "payload": "ty"
+                          "title": "ironman kit",
+                          "payload": "ik"
                         },
                         {
                           "type": "postback",
-                          "title": "Nissan",
-                          "payload": "ns"
+                          "title": "amuse kit",
+                          "payload": "ak"
                         },
                         {
 
                           "type": "postback",
-                          "title":"Suzuki",
-                          "payload":"sz"
+                          "title":"side skirt",
+                          "payload":"ss"
                         }
                       ]      
+                    },
+                    {
+                      "title":"RIM and tier",
+                      "buttom":[{
+                        "type":"postback",
+                        "title":"Work Wheel Alloy",
+                        "payload":"wwa"
+                      },{
+                      "type":"postback",
+                      "title":"BBS alloy",
+                      "payload":"bbs"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Tier recommandation",
+                        "payload":"tr"
+                      }
+                      ]
+                    },
+                    {
+                      "title":"exhaust",
+                      "buttom":[
+                        {
+                        "type":"postback",
+                        "title":"HKS",
+                        "payload":"hks"
+                      },
+                      {
+                      "type":"postback",
+                      "title":"Armytrix",
+                      "payload":"arm"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"akrapovic",
+                        "payload":"akrap"
+                      }
+                    ]
                     }
                   ] 
                 }
