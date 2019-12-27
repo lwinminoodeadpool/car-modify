@@ -110,7 +110,7 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "car body kit",
+                          "title": "car body",
                           "payload": "bodykit"
                         },
                         {
