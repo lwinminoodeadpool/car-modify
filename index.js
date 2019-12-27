@@ -257,7 +257,7 @@ app.post('/webhook', (req, res) => {
                     },
                     {
                       "title":"RIM and tier",
-                      "buttom":[{
+                      "buttons":[{
                         "type":"postback",
                         "title":"Work Wheel Alloy",
                         "payload":"wwa"
@@ -275,7 +275,7 @@ app.post('/webhook', (req, res) => {
                     },
                     {
                       "title":"exhaust",
-                      "buttom":[
+                      "buttons":[
                         {
                         "type":"postback",
                         "title":"HKS",
