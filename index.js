@@ -252,11 +252,6 @@ app.post('/webhook', (req, res) => {
                           "type": "postback",
                           "title":"Suzuki",
                           "payload":"sz"
-                        },
-                        {
-                          "type": "postback",
-                          "title":"Misubishi",
-                          "payload":"mi"
                         }
                       ]      
                     }
