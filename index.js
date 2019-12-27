@@ -7,7 +7,7 @@ const
   requestify = require('requestify'),
   app = express().use(bodyParser.json()); // creates express http server
 
-  const pageaccesstoken = 'EAAhuvKStHYYBAJKm5YDKBgWFaOep8wuppmKdTRZB1e9XThEGG1dX2ZCtV26D5xwz8mAjxlHzo3TeIHQNIqpDzr77y5DWjlXjVvgCQgqINgPNgr31GYwXYOGpC1RtFXMEj3Mpej5en5VjTh6NxBKevWcZCdLjaUnPBIG9ojZCTRQhl73ZCkyaQ'
+  const pageaccesstoken = 'EAAhuvKStHYYBAB6xCd06CQv7o6JgO1crGRQKyhPLvUEsRfZAl0WUnHthOUO6gFs8E9fPyxtNZCRC5EbHZB8RTLkf20VRBE23WZC3rxOE3DGGYR0hKdh37zGOfTFZA4FG5eOkGYw6TYIg9gFeBBieuSMn32GzU6X43N5gztiCSh5HT2ICHrHg9'
 
   requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
   {
@@ -172,7 +172,7 @@ app.post('/webhook', (req, res) => {
           })
         
         }
-
+          //body kit 
         if(userButton == 'bodykit'){
           let genericMessage = {
             "recipient":{
@@ -236,6 +236,7 @@ app.post('/webhook', (req, res) => {
             }
           }
 
+
           requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
             genericMessage
           ).then( response => {
@@ -244,6 +245,7 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
+        //de hti 
       });
   
       // Returns a '200 OK' response to all requests
