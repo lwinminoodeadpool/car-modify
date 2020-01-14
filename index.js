@@ -7,7 +7,7 @@ const
   requestify = require('requestify'),
   app = express().use(bodyParser.json()); // creates express http server
 
-  const pageaccesstoken = 'EAAhuvKStHYYBAB6xCd06CQv7o6JgO1crGRQKyhPLvUEsRfZAl0WUnHthOUO6gFs8E9fPyxtNZCRC5EbHZB8RTLkf20VRBE23WZC3rxOE3DGGYR0hKdh37zGOfTFZA4FG5eOkGYw6TYIg9gFeBBieuSMn32GzU6X43N5gztiCSh5HT2ICHrHg9'
+  const pageaccesstoken = 'EAAhuvKStHYYBAAUlWZA12olvfCwZCYjZCZCYIyus5xjZBQD7iIIzun9eR1LpcVtYM4dUvohBvqral9rYCIB1ecvhJSS0ApUZBFp5mzXxmuxsyCme9ZBLI1TNfI7PzEukDwAIuUj8cbAUWCYXUxKcLq2lQME0a2hy2j4gEikF1CeNG6LDHGgo7HN'
 
   requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
   {
