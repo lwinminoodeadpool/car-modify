@@ -61,7 +61,7 @@ app.get('/webhook', (req, res) => {
     }
   });
 
-// Creates the endpoint for our webhook 
+// Creates the endpoint for our webhook cmd
 app.post('/webhook', (req, res) => {  
  
     let body = req.body;
@@ -121,7 +121,8 @@ app.post('/webhook', (req, res) => {
                       ]      
                     },
                     //end of beautify 
-                    //start of performance build and drift build
+                    
+                    //start of car part rent 
                     {
                       "title":"Rent",
                       "image_url":"https://www.drivemyanmar.com/wp-content/uploads/2017/12/car-drift3.jpg",
@@ -144,7 +145,8 @@ app.post('/webhook', (req, res) => {
                         },
                       ]      
                     },
-                    //end of car performance build and drif build 
+                    //end of car part rent 
+
                     //start of car parts trade
                     {
                       "title":"Car part trade",
@@ -182,49 +184,7 @@ app.post('/webhook', (req, res) => {
           })
         
         }
-          //body kit 
-        if(userButton == 'bodykit'){
-          let genericMessage = {
-            "recipient":{
-              "id":webhook_event.sender.id
-            },
-            "message":{
-              "attachment":{
-                "type":"template",
-                "payload":{
-                  "template_type":"generic",
-                  "elements":[
-                    {
-                      "title":"please choose one.",
-                      "buttons":[
-                        {
-                          "type": "postback",
-                          "title": "popular carbody mod",
-                          "payload": "pkt"
-                        },
-                        {
-                          "type": "postback",
-                          "title": "Car bodykit shops",
-                          "payload": "cbs"
-                        }
-                      ]      
-                    }
-                  ] 
-                }
-              }
-            }
-          }
-
-
-          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
-            genericMessage
-          ).then( response => {
-            console.log(response)
-          }).fail( error => {
-            console.log(error)
-          })
-        }
-        //end of car body kit and choose one 
+        
 
         //star of choose one user said popular carbody kit 
 
@@ -406,6 +366,41 @@ app.post('/webhook', (req, res) => {
           })
         }
 
+        //start of car part rent 
+        if(userButton == 'carbodyki'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"car-body kit",
+                      "subtitle":"available body kit for rent"  
+                    },
+                   
+                    
+                    ]
+                    } 
+                }
+              }
+            }
+          }
+
+
+          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+        //end of car part rent 
       });
   
       // Returns a '200 OK' response to all requests
