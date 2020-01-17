@@ -366,41 +366,6 @@ app.post('/webhook', (req, res) => {
           })
         }
 
-        //start of car part rent 
-        if(userButton == 'carbodyki'){
-          let genericMessage = {
-            "recipient":{
-              "id":webhook_event.sender.id
-            },
-            "message":{
-              "attachment":{
-                "type":"template",
-                "payload":{
-                  "template_type":"generic",
-                  "elements":[
-                    {
-                      "title":"car-body kit",
-                      "subtitle":"available body kit for rent"  
-                    },
-                   
-                    
-                    ]
-                    } 
-                }
-              }
-            }
-          }
-
-
-          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
-            genericMessage
-          ).then( response => {
-            console.log(response)
-          }).fail( error => {
-            console.log(error)
-          })
-        }
-        //end of car part rent 
       });
   
       // Returns a '200 OK' response to all requests
