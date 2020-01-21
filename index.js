@@ -8,7 +8,6 @@ const
   app = express().use(bodyParser.json()); // creates express http server
 
 const admin = require('firebase-admin');
-const functions = require('firebase-functions');
 
 var serviceAccount = {
   "type": "service_account",
