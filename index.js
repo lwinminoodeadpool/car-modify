@@ -188,7 +188,7 @@ app.post('/webhook', (req, res) => {
             }
           }
 
-          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             welcomeMessage
           ).then( response => {
             console.log(response)
@@ -196,7 +196,7 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
 
-          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             genericMessage
           ).then( response => {
             console.log(response)
@@ -286,7 +286,7 @@ app.post('/webhook', (req, res) => {
           }
 
 
-          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             genericMessage
           ).then( response => {
             console.log(response)
@@ -378,7 +378,7 @@ app.post('/webhook', (req, res) => {
           }
 
 
-          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             genericMessage
           ).then( response => {
             console.log(response)
@@ -417,12 +417,24 @@ app.post('/webhook', (req, res) => {
               }
             }
           }
-                      
-
-          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
-            genericMessage
+          let textMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text":"Available bodykit for rent"
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            textMessage
           ).then( response => {
-            console.log(response)
+            requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+              genericMessage
+            ).then( response => {
+              console.log(response)
+            }).fail( error => {
+              console.log(error)
+            })
           }).fail( error => {
             console.log(error)
           })
