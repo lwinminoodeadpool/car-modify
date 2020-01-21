@@ -7,6 +7,28 @@ const
   requestify = require('requestify'),
   app = express().use(bodyParser.json()); // creates express http server
 
+const admin = require('firebase-admin');
+const functions = require('firebase-functions');
+
+var serviceAccount = {
+  "type": "service_account",
+  "project_id": "carmodify-lmo",
+  "private_key_id": "09424262e79de6032b2cdbce2a33c30360152e72",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDtoIaNvOISksLS\ntsnwKsHjpePbz7RHYco6e7m+pFD0UXkmCbNzWReryORrCllWby4sf5X4eMQXTwjy\n0pjPf2BTXzrsH1HwkLJwusth4JQXdbFh6o3FjaNHuocbLDvnqxtYE+xEC3lU7SFv\n5C9IS9fVZERLbqL2AX1C8jO6TTZ8Ga9yO/QhF4xYSpsAwzX/hxesG79eEemxE1F7\nREBcOZcjmJw9nk5zFx3HLdt0n4iW1vBEebsSrjaPKeUh/EfWbxiFmAEj92kVj9OQ\n1X/s2DB5MQ57LVXwn7LHHfGnLuGA+k49yoQLs4Isfr16cb5VpR5hbPWJfY3meVQL\ngNon6UsHAgMBAAECggEAD7ep9A8Vyae2cOHmmoGhgHwVBbwyeZ7mFZc1x9PY3PLU\nohJLMdUnQ9VjsmbQAO/AAfEly3ZldgCOyszo5En8ZkIAGjp6HNYypKfeUv4xSBn1\n89A5X2NJH7Hz73VYuFqbfOhtx2nA3+qtZwK/U+IHB9YmzvHQSphPn5F4oBktAj6U\nuNxJ6YbBMqOY/c9DO4/E+LbjNYuxURA9yCHyKdQ81CkdLR2GLlnttRwOAyfeLoyN\nkizBBsqB9t01MANT2mEKjluHTN+WcopxsDgR9JZAIrpJaLfWgnrf9o4SI+cM3sGc\nE0FNGNEg2kOS+oc0KzjMrpQ35opL0PDGMRRM9WVlzQKBgQD37TsbEZSC57okPrsY\nOkzvigw4RirDjUjb9IlIeEA29R+TCRbwMjDTb+WGsicv6CE0GWszG1KQqz0Wru1N\nkPedGn/BHRsavtnGxM4WczNcGldtc3moso8RSIDfN4s4VZsXOBqo1YebNRPvDEDz\nElspePMTVzvmRhXBzG/WmxCRSwKBgQD1XW9RDfn0G14j26MqpTBcfNGws932x/Rg\n7tBUTDRuxkVhikbcalTAh8guYVRKzJuvHPPddSp887tuow+JZvfENiA7rBjtoErF\nK+lclOz2uRVJpVkwUbfIoixj/B0THkrIECWxS1Hxux/3rONR5/rHB0UluNMhFPYL\nEJvxJv4TtQKBgQDL0CYq1oT0KHOJoFhGToc41I+/I0+8esVOrPS+srx3cYOHaI2G\n4HvrFa3m0UYNyBKjtdG+rdNuQpdxslQ609X7PPGRW9AQaJy3HssdAY9TRARjYe69\nlCyw1J284vh8U0OwDts7uG5GVZgRiE1MheaTbW7Gk4wWfb8dFmdKUSeJiQKBgEHW\nNVVJa8U9RrBWcdyygFyAvX8tdCSQmJkd21aTMAp9NwaqJMNl4KHcjTEsuoJrjmaZ\nXTISCzmF6MgSBsw2jcrfPxzj27h/JzDqzG4kI8U7+mNNc7YMZ0T1hvW5I1AK88Pk\n2UhOTomPTU+W21QR6+9Vmw85HaWlyzNC3KUDcm91AoGBAMOYpjA8fmiwf8NYmJBA\n/zJOsa2k36zKL+3x/UnnHPKWb8M9WnbiEgX9FE7/gYwkRcW6EI3Ro1J/gj8Snujb\ntlWBxlcfRy0jQynr+LcWeS7JApx2Qtl5Ba12yNSWvYQ0+oz9dM1I6fWhimMGvwwX\nozugmXfxo6NXI+lRRrtrmzrX\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-y8njc@carmodify-lmo.iam.gserviceaccount.com",
+  "client_id": "106330645817811096783",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-y8njc%40carmodify-lmo.iam.gserviceaccount.com"
+}
+
+
+admin.initializeApp(serviceAccount);
+
+let db = admin.firestore();
+
+
   const pageaccesstoken = 'EAAhuvKStHYYBAAUlWZA12olvfCwZCYjZCZCYIyus5xjZBQD7iIIzun9eR1LpcVtYM4dUvohBvqral9rYCIB1ecvhJSS0ApUZBFp5mzXxmuxsyCme9ZBLI1TNfI7PzEukDwAIuUj8cbAUWCYXUxKcLq2lQME0a2hy2j4gEikF1CeNG6LDHGgo7HN'
 
   requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
