@@ -365,7 +365,47 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
+        //if user car bodykit for rent 
+        if (userButton == 'carbodykit'){
 
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"Avaliabel bodykit for rent",
+                      "image_url":"http://thumb2.zeppy.io/d/l400/pict/113862367311/bodykit-kazama-for-toyota-mark-2-110",
+                      "subtitle":"Fortuna bodykit toyota mark 2 jzx 110",                  
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "rent",
+                          "payload": "rent1"
+                        },
+                      ]      
+                    },
+                    
+                  ] 
+                }
+              }
+            }
+          }
+                      
+
+          requestify.post(`https://graph.facebook.com/v3.3/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
       });
   
       // Returns a '200 OK' response to all requests
