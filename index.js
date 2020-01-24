@@ -386,6 +386,38 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
+
+        //start of text message
+        let textMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "text":"Available bodykit for rent"
+          }
+        }
+        //end of text message
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+          textMessage
+          //send text message first
+        ).then( response => {
+          //then
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+            //send generic Message
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+          //end of generic message
+          //end of text message
+        }).fail( error => {
+          console.log(error)
+        })
+        //done sout yuu
+
+        
         //if user car bodykit for rent 
         if (userButton == 'carbodykit'){
 
@@ -463,35 +495,7 @@ app.post('/webhook', (req, res) => {
               }
             }
           }
-          //start of text message
-          let textMessage = {
-            "recipient":{
-              "id":webhook_event.sender.id
-            },
-            "message":{
-              "text":"Available bodykit for rent"
-            }
-          }
-          //end of text message
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-            textMessage
-            //send text message first
-          ).then( response => {
-            //then
-            requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-              genericMessage
-              //send generic Message
-            ).then( response => {
-              console.log(response)
-            }).fail( error => {
-              console.log(error)
-            })
-            //end of generic message
-            //end of text message
-          }).fail( error => {
-            console.log(error)
-          })
-          //done sout yuu
+          
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             genericMessage
           ).then( response => {
