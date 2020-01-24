@@ -181,12 +181,12 @@ app.post('/webhook', (req, res) => {
                         },
                         {
                           "type":"postback",
-                          "title":"sell",
+                          "title":"Sell",
                           "payload":"sell"
                         },
                         {
                           "type":"postback",
-                          "title":"buy",
+                          "title":"Buy",
                           "payload":"buy"
                         }
                       ]      
@@ -419,7 +419,7 @@ app.post('/webhook', (req, res) => {
                           "type": "postback",
                           "title": "rent",
                           "payload": "rent1"
-                        },
+                        }
                         
                       ]      
                     },
