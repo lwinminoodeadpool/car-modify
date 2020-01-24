@@ -400,7 +400,6 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                      "title":"Avaliabel bodykit for rent",
                       "image_url":"http://thumb2.zeppy.io/d/l400/pict/113862367311/bodykit-kazama-for-toyota-mark-2-110",
                       "subtitle":"Fortuna bodykit toyota mark 2 jzx 110",                  
                       "buttons":[
@@ -409,14 +408,62 @@ app.post('/webhook', (req, res) => {
                           "title": "rent",
                           "payload": "rent1"
                         },
+                        
                       ]      
                     },
-                    
+                    {
+                      "imgae_url" : "",
+                      "subtitle"  :"Hippo Sleek for Toyota mark 2 jzx110",
+                      "buttons":[
+                        {
+                          "type":"postback",
+                          "title":"rent",
+                          "payload":"rent2"
+                        }
+                      ]
+                    },
+                    {
+                      "image":"",
+                      "subtitle":"Mugen bodykit for Honda Fit(2009- 2012)",
+                      "buttons":[
+                        {
+                          "type" : "postback",
+                          "title": "rent",
+                          "payload":"rent3"
+                        }
+
+                      ]
+                    },
+                    {
+                      "image":"",
+                      "subtitle":"iron-man bodykit for Suzuki Swift(2019)",
+                      "buttons":[
+                        {
+                          "type" : "postback",
+                          "title": "rent",
+                          "payload":"rent4"
+                        }
+
+                      ]
+                    },
+                    {
+                      "image":"",
+                      "subtitle":"santos bodykit for Suzuki Ciaz (2019) ",
+                      "buttons":[
+                        {
+                          "type" : "postback",
+                          "title": "rent",
+                          "payload":"rent5"
+                        }
+
+                      ]
+                    },
                   ] 
                 }
               }
             }
           }
+          //start of text message
           let textMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -425,19 +472,26 @@ app.post('/webhook', (req, res) => {
               "text":"Available bodykit for rent"
             }
           }
+          //end of text message
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             textMessage
+            //send text message first
           ).then( response => {
+            //then
             requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
               genericMessage
+              //send generic Message
             ).then( response => {
               console.log(response)
             }).fail( error => {
               console.log(error)
             })
+            //end of generic message
+            //end of text message
           }).fail( error => {
             console.log(error)
           })
+          //done sout yuu
         }
       });
   
