@@ -163,7 +163,7 @@ app.post('/webhook', (req, res) => {
                           "type": "postback",
                           "title": "Spoiler",
                           "payload": "spoi"
-                        },
+                        }
                       ]      
                     },
                     //end of car part rent 
@@ -413,6 +413,7 @@ app.post('/webhook', (req, res) => {
                   "elements":[
                     {
                       "image_url":"http://thumb2.zeppy.io/d/l400/pict/113862367311/bodykit-kazama-for-toyota-mark-2-110",
+                      "title":"type1",
                       "subtitle":"Fortuna bodykit toyota mark 2 jzx 110",                  
                       "buttons":[
                         {
@@ -422,53 +423,6 @@ app.post('/webhook', (req, res) => {
                         }
                         
                       ]      
-                    },
-                    {
-                      "imgae_url" :"http://thumb2.zeppy.io/d/l400/pict/113862367311/bodykit-kazama-for-toyota-mark-2-110",
-                      "subtitle"  :"Hippo Sleek for Toyota mark 2 jzx110",
-                      "buttons":[
-                        {
-                          "type":"postback",
-                          "title":"rent",
-                          "payload":"rent2"
-                        }
-                      ]
-                    },
-                    {
-                      "image":"http://thumb2.zeppy.io/d/l400/pict/113862367311/bodykit-kazama-for-toyota-mark-2-110",
-                      "subtitle":"Mugen bodykit for Honda Fit(2009- 2012)",
-                      "buttons":[
-                        {
-                          "type" : "postback",
-                          "title": "rent",
-                          "payload":"rent3"
-                        }
-
-                      ]
-                    },
-                    {
-                      "image":"http://thumb2.zeppy.io/d/l400/pict/113862367311/bodykit-kazama-for-toyota-mark-2-110",
-                      "subtitle":"iron-man bodykit for Suzuki Swift(2019)",
-                      "buttons":[
-                        {
-                          "type" : "postback",
-                          "title": "rent",
-                          "payload":"rent4"
-                        }
-
-                      ]
-                    },
-                    {
-                      "image":"http://thumb2.zeppy.io/d/l400/pict/113862367311/bodykit-kazama-for-toyota-mark-2-110",
-                      "subtitle":"santos bodykit for Suzuki Ciaz (2019) ",
-                      "buttons":[
-                        {
-                          "type" : "postback",
-                          "title": "rent",
-                          "payload":"rent5"
-                        }
-
-                      ]
                     }
                   ] 
                 }
@@ -485,7 +439,7 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
-        /////////////////////////////////////////////kana lay 
+        
 
 
         
