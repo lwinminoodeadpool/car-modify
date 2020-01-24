@@ -492,6 +492,13 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
           //done sout yuu
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
         }
       });
   
