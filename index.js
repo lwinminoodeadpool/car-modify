@@ -418,9 +418,9 @@ app.post('/webhook', (req, res) => {
         //done sout yuu
 
 
-        //if user car bodykit for rent 
-        if (userButton == 'carbodykit'){
 
+        //if user car bodykit for rent
+        if(userButton == 'carbodykit'){
           let genericMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -488,14 +488,15 @@ app.post('/webhook', (req, res) => {
                           "payload":"rent5"
                         }
 
-                      ]
+                      ]      
                     }
                   ] 
                 }
               }
             }
           }
-          
+
+
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             genericMessage
           ).then( response => {
@@ -504,6 +505,7 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
+        //end of car body kit rent 
       });
   
       // Returns a '200 OK' response to all requests
