@@ -178,6 +178,16 @@ app.post('/webhook', (req, res) => {
                           "type": "postback",
                           "title": "Car part trade",
                           "payload": "Trade"
+                        },
+                        {
+                          "type":"postback",
+                          "title":"sell",
+                          "payload":"sell"
+                        },
+                        {
+                          "type":"postback",
+                          "title":"buy",
+                          "payload":"buy"
                         }
                       ]      
                     }
