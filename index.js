@@ -514,7 +514,67 @@ app.post('/webhook', (req, res) => {
         
 
 
-        
+       //if user click on rent 
+
+       if(userButton == 'rent1'){
+        let genericMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "title":"Price",
+                    "subtitle":"you need to pay 20000ks for deposit to rent the body kit. Monthly fees:",                  
+                    "buttons":[
+                      {
+                        "type": "postback",
+                        "title": "One Month:20000",
+                        "payload": "o1"
+                      },
+                      {
+                        "type": "postback",
+                        "title": "Two Months:30000",
+                        "payload": "o2"
+                      },
+                      {
+                        "type": "postback",
+                        "title": "Three Months:40000",
+                        "payload": "o3"
+                      },
+                      
+                    ]      
+                  },
+                  
+
+                ] 
+              }
+            }
+          }
+        }
+
+
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+          genericMessage
+        ).then( response => {
+          console.log(response)
+        }).fail( error => {
+          console.log(error)
+        })
+      }
+
+
+
+
+
+
+
+
+
                     
                   
       });
