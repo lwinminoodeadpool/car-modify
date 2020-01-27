@@ -568,23 +568,8 @@ app.post('/webhook', (req, res) => {
       }
 
      
-        //start of text message
-      let textMessage = {
-        "recipient":{
-          "id":webhook_event.sender.id
-        },
-        "message":{
-          "text":"Available bodykit for rent"
-        }
-      }
-      //end of text message
-      requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        textMessage
-        ).then( response => {
-          console.log(response)
-        }).fail( error => {
-          console.log(error)
-        })
+       
+     
 
 
 
