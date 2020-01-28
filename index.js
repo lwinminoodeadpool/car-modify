@@ -54,8 +54,13 @@ let db = admin.firestore();
 app.set('view engine', 'ejs');
 app.set('views', __dirname+'/views')
 
-app.get('/orderConfirm', function(req,res) {
-  res.render('index')
+app.get('/orderConfirm/:rentType/:Item/:CarBrand/:Month/:price/:name', function(req,res) {
+  var rentType = req.params.rentType;
+  var item = req.params.Item;
+  var brand = req.params.CarBrand;
+  var month = req.params.Month;
+  var price = req.params.price;
+  res.render('index', {rentType: rentType, item: item, brand: brand, month: month, price: price, name: name})
 })
 
   // Sets server port and logs message on success
@@ -441,8 +446,8 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "rent",
-                          "payload": "rent1"
+                          "title": "Rent",
+                          "payload": "bodykitrent/fortuna/toyota"
                         }
                         
                       ]      
@@ -454,8 +459,8 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "rent",
-                          "payload": "rent2"
+                          "title": "Rent",
+                          "payload": "bodykitrent/hippo/toyota"
                         }
                         
                       ]      
@@ -467,8 +472,8 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "rent",
-                          "payload": "rent3"
+                          "title": "Rent",
+                          "payload": "bodykitrent/mugen/honda"
                         }
                         
                       ]      
@@ -480,8 +485,8 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "rent",
-                          "payload": "rent4"
+                          "title": "Rent",
+                          "payload": "bodykitrent/iron-man/suzuki"
                         }
                         
                       ]      
@@ -493,8 +498,8 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "rent",
-                          "payload": "rent5"
+                          "title": "Rent",
+                          "payload": "bodykitrent/santos/suzuki"
                         }
                         
                       ]      
@@ -523,7 +528,21 @@ app.post('/webhook', (req, res) => {
 
        //if user click on rent 1
 
-       if(userButton == 'rent1'){
+       if(userButton.includes('bodykitrent/')){
+         var userPayload = userButton.split('/')
+         var rentType = userPayload[0]
+         var bodyKit = userPayload[1]
+         var brand = userPayload[2]
+         var profileLink = 'https://graph.facebook.com/'+webhook_event.sender.id+'?fields=first_name,last_name,&access_token='+pageaccesstoken
+         var userName = []
+         requestify.get(profileLink).then(function(success){
+           var response = success.getBody();
+          userName.push(response.first_name)
+          userName.push(response.last_name)
+         })
+         console.log(userName)
+         userName = userName.join(' ')
+         console.log(userName)
         let genericMessage = {
           "recipient":{
             "id":webhook_event.sender.id
@@ -541,17 +560,17 @@ app.post('/webhook', (req, res) => {
                       {
                         "type": "web_url",
                         "title": "One Month:20000",
-                        "url": "https://carmodify.herokuapp.com/orderConfirm"
+                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${bodyKit}/${brand}/1/20000/${userName}`
                       },
                       {
                         "type": "web_url",
                         "title": "Two Months:30000",
-                        "url": "https://carmodify.herokuapp.com/orderConfirm"
+                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${bodyKit}/${brand}/2/30000/${userName}`
                       },
                       {
                         "type": "web_url",
                         "title": "Three Months:40000",
-                        "url": "https://carmodify.herokuapp.com/orderConfirm"
+                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${bodyKit}/${brand}/3/40000/${userName}`
                       },
                       
                     ]      
@@ -574,49 +593,9 @@ app.post('/webhook', (req, res) => {
         })
       }
 
-      //if user click on rent 2
+      
 
-      if(userButton == 'rent2'){
-        let genericMessage = {
-          "recipient":{
-            "id":webhook_event.sender.id
-          },
-          "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[
-                  {
-                    "title":"Price",
-                    "subtitle":"you need to pay 20000ks for deposit to rent the body kit. Monthly fees:",                  
-                    "buttons":[
-                      {
-                        "type": "web_url",
-                        "title": "One Month:20000",
-                        "url": "https://carmodify.herokuapp.com/orderConfirm"
-                      },
-                      {
-                        "type": "web_url",
-                        "title": "Two Months:30000",
-                        "url": "https://carmodify.herokuapp.com/orderConfirm"
-                      },
-                      {
-                        "type": "web_url",
-                        "title": "Three Months:40000",
-                        "url": "https://carmodify.herokuapp.com/orderConfirm"
-                      },
-                      
-                    ]      
-                  },
-                  
-
-                ] 
-              }
-            }
-          }
-        }
-
+       
 
         requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
           genericMessage
@@ -627,6 +606,7 @@ app.post('/webhook', (req, res) => {
         })
       }
 
+       //if user alloy wheel for rent 
     
        
      
