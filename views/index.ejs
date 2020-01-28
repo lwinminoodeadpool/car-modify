@@ -71,13 +71,13 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   function addtodb() {
-      var name = document.getElementById('name');
-      var phone = document.getElementById('phone');
-      var add = document.getElementById('add');
-
+      var name = document.getElementById('name').value
+      var phone = document.getElementById('phone').value
+      var add = document.getElementById('add').value
+    console.log(name, phone, add)
       firebase.auth().signInWithEmailAndPassword('carmodify@gmail.com', '123456').then(function(succ) {
         var db = firebase.firestore();
-    db.collection('order').doc().add({
+    db.collection('order').add({
         name: name,
         phone: phone,
         address: add
