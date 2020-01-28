@@ -60,6 +60,7 @@ app.get('/orderConfirm/:rentType/:Item/:CarBrand/:Month/:price/:name', function(
   var brand = req.params.CarBrand;
   var month = req.params.Month;
   var price = req.params.price;
+  var name = req.params.name;
   res.render('index', {rentType: rentType, item: item, brand: brand, month: month, price: price, name: name})
 })
 
