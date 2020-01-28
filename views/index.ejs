@@ -50,7 +50,8 @@
 </body>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
-
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
@@ -74,9 +75,8 @@
       var phone = document.getElementById('phone');
       var add = document.getElementById('add');
 
-      firebase.auth().signInWithEmailAndPassword('carmodify@gmail.com', '123456').catch(function(error) {
-        firebase.onAuthStateChanged(function(user) {
-  if (user) {
+      firebase.auth().signInWithEmailAndPassword('carmodify@gmail.com', '123456').then(function(succ) {
+        var db = firebase.firestore();
     db.collection('order').doc().add({
         name: name,
         phone: phone,
@@ -84,10 +84,6 @@
     }).then(success => {
         window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://image.shutterstock.com/image-vector/thankyou-word-text-handwritten-rainbow-260nw-1319893574.jpg&display_text=Thankyou')
     })
-  } else {
-    // No user is signed in.
-  }
-});
 
 });
   }
