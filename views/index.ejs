@@ -75,7 +75,7 @@
       var add = document.getElementById('add');
 
       firebase.auth().signInWithEmailAndPassword('carmodify@gmail.com', '123456').catch(function(error) {
-        firebase.auth().onAuthStateChanged(function(user) {
+        firebase.onAuthStateChanged(function(user) {
   if (user) {
     db.collection('order').doc().add({
         name: name,
