@@ -71,7 +71,7 @@
   firebase.initializeApp(firebaseConfig);
   function addtodb() {
       var name = document.getElementById('name');
-      var phone = doucment.getElementById('phone');
+      var phone = document.getElementById('phone');
       var add = document.getElementById('add');
 
       firebase.auth().signInWithEmailAndPassword('carmodify@gmail.com', '123456').catch(function(error) {
