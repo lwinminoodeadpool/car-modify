@@ -155,6 +155,9 @@ app.post('/webhook', (req, res) => {
                       ]      
                     },
                     //end of beautify 
+
+
+
                     
                     //start of car part rent 
                     {
@@ -185,6 +188,7 @@ app.post('/webhook', (req, res) => {
 
 
 
+
                     //start of car parts trade
                     {
                       "title":"Car part trade",
@@ -208,7 +212,7 @@ app.post('/webhook', (req, res) => {
                         }
                       ]      
                     }
-                    //end of car part trade
+                    
                   ] 
                 }
               }
@@ -233,6 +237,7 @@ app.post('/webhook', (req, res) => {
         
         }
         
+        // end of one part 
 
 
 
@@ -427,6 +432,8 @@ app.post('/webhook', (req, res) => {
         }
 
 
+
+
         //if user car bodykit for rent 
 
         if(userButton == 'carbodykit'){
@@ -527,7 +534,8 @@ app.post('/webhook', (req, res) => {
         
 
 
-       //if user click on bofy kit rent 
+
+       //database bodykit rent databse order  
 
        if(userButton.includes('bodykitrent/')){
          var userPayload = userButton.split('/')
@@ -596,6 +604,8 @@ app.post('/webhook', (req, res) => {
         
       }
     
+
+
        
      //if user rent alloy 
 
@@ -655,7 +665,7 @@ app.post('/webhook', (req, res) => {
           })
         }
 
-
+          //database alloy
         if(userButton.includes('alloyrent/')){
           var userPayload = userButton.split('/')
           var rentType = userPayload[0]
@@ -723,8 +733,131 @@ app.post('/webhook', (req, res) => {
          
        }
 
+       //start spoiler rent 
+
+       if(userButton == 'spoi'){
+        let genericMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "image_url":"http://www.japspeed.co.uk/pub/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/z/z/zz00816-01.jpg",
+                    "title":"japspeed-carbon-fibre-bgw-spoiler",
+                    "subtitle":"Avaliable spoiler for rent",                  
+                    "buttons":[
+                      {
+                        "type": "postback",
+                        "title": "Rent",
+                        "payload": "spoirent/star/spoiler"
+                      }
+                      
+                    ]      
+                  },
+                  {
+                    "image_url":"http://www.japspeed.co.uk/pub/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/z/z/zz00816-01.jpg",
+                    "title":"japspeed-carbon-fibre-bgw-spoiler",
+                    "subtitle":"Avaliable spoiler for rent",                  
+                    "buttons":[
+                      {
+                        "type": "postback",
+                        "title": "Rent",
+                        "payload": "spoirent/circle/spoiler"
+                      }
+                      
+                    ]      
+                  },
 
 
+
+                ] 
+              }
+            }
+          }
+        }
+
+
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+          genericMessage
+        ).then( response => {
+          console.log(response)
+        }).fail( error => {
+          console.log(error)
+        })
+      }
+
+        //database spoiler 
+        if(userButton.includes('spoirent/')){
+          var userPayload = userButton.split('/')
+          var rentType = userPayload[0]
+          var spoispoierPayload[1]
+          var brand = userPayload[2]
+          var profileLink = 'https://graph.facebook.com/'+webhook_event.sender.id+'?fields=first_name,last_name&access_token='+pageaccesstoken
+          var userName = []
+          requestify.get(profileLink).then(function(success){
+            var response = success.getBody();
+            console.log(response)
+           userName.push(response.first_name)
+           userName.push(response.last_name)
+           userName = userName.join(' ')
+          console.log(userName)
+          let genericMessage = {
+           "recipient":{
+             "id":webhook_event.sender.id
+           },
+           "message":{
+             "attachment":{
+               "type":"template",
+               "payload":{
+                 "template_type":"generic",
+                 "elements":[
+                   {
+                     "title":"Price",
+                     "subtitle":"you need to pay 20000ks for deposit to rent the spoiler. Monthly fees:",                  
+                     "buttons":[
+                       {
+                         "type": "web_url",
+                         "title": "One Month:20000",
+                         "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${spoi}/${brand}/1/20000/${userName}`
+                       },
+                       {
+                         "type": "web_url",
+                         "title": "Two Months:30000",
+                         "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${spoi}/${brand}/2/30000/${userName}`
+                       },
+                       {
+                         "type": "web_url",
+                         "title": "Three Months:40000",
+                         "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${spoi}/${brand}/3/40000/${userName}`
+                       },
+                       
+                     ]      
+                   },
+                   
+ 
+                 ] 
+               }
+             }
+           }
+         }
+ 
+ 
+         requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+           genericMessage
+         ).then( response => {
+           console.log(response)
+         }).fail( error => {
+           console.log(error)
+         })
+          })
+          
+         
+       }
 
 
                     
