@@ -521,9 +521,62 @@ app.post('/webhook', (req, res) => {
         
 
 
-       //if user click on rent 
+       //if user click on rent 1
 
        if(userButton == 'rent1'){
+        let genericMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "title":"Price",
+                    "subtitle":"you need to pay 20000ks for deposit to rent the body kit. Monthly fees:",                  
+                    "buttons":[
+                      {
+                        "type": "web_url",
+                        "title": "One Month:20000",
+                        "url": "https://carmodify.herokuapp.com/orderConfirm"
+                      },
+                      {
+                        "type": "web_url",
+                        "title": "Two Months:30000",
+                        "url": "https://carmodify.herokuapp.com/orderConfirm"
+                      },
+                      {
+                        "type": "web_url",
+                        "title": "Three Months:40000",
+                        "url": "https://carmodify.herokuapp.com/orderConfirm"
+                      },
+                      
+                    ]      
+                  },
+                  
+
+                ] 
+              }
+            }
+          }
+        }
+
+
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+          genericMessage
+        ).then( response => {
+          console.log(response)
+        }).fail( error => {
+          console.log(error)
+        })
+      }
+
+      //if user click on rent 2
+
+      if(userButton == 'rent2'){
         let genericMessage = {
           "recipient":{
             "id":webhook_event.sender.id
