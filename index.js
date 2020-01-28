@@ -527,7 +527,7 @@ app.post('/webhook', (req, res) => {
         
 
 
-       //if user click on rent 1
+       //if user click on bofy kit rent 
 
        if(userButton.includes('bodykitrent/')){
          var userPayload = userButton.split('/')
@@ -597,9 +597,131 @@ app.post('/webhook', (req, res) => {
       }
     
        
-     
+     //if user rent alloy 
+
+     if(userButton == 'alloy'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "image_url":"https://www.autoalloys.com/content/images/thumbs/0002915_19-cades-apollo-silver-crest-alloy-wheels_550.png",
+                      "title":"16 inches star alloy",
+                      "subtitle":"Avaliable alloy for rent",                  
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "Rent",
+                          "payload": "alloyrent/star/alloy"
+                        }
+                        
+                      ]      
+                    },
+                    {
+                      "image_url":"https://www.autoalloys.com/content/images/thumbs/0002915_19-cades-apollo-silver-crest-alloy-wheels_550.png",
+                      "title":"15 inches circle alloy",
+                      "subtitle":"Avaliable alloy for rent",                  
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "Rent",
+                          "payload": "alloyrent/circle/alloy"
+                        }
+                        
+                      ]      
+                    },
 
 
+
+                  ] 
+                }
+              }
+            }
+          }
+
+
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+
+
+        if(userButton.includes('alloyrent/')){
+          var userPayload = userButton.split('/')
+          var rentType = userPayload[0]
+          var alloy = userPayload[1]
+          var brand = userPayload[2]
+          var profileLink = 'https://graph.facebook.com/'+webhook_event.sender.id+'?fields=first_name,last_name&access_token='+pageaccesstoken
+          var userName = []
+          requestify.get(profileLink).then(function(success){
+            var response = success.getBody();
+            console.log(response)
+           userName.push(response.first_name)
+           userName.push(response.last_name)
+           userName = userName.join(' ')
+          console.log(userName)
+          let genericMessage = {
+           "recipient":{
+             "id":webhook_event.sender.id
+           },
+           "message":{
+             "attachment":{
+               "type":"template",
+               "payload":{
+                 "template_type":"generic",
+                 "elements":[
+                   {
+                     "title":"Price",
+                     "subtitle":"you need to pay 20000ks for deposit to rent the body kit. Monthly fees:",                  
+                     "buttons":[
+                       {
+                         "type": "web_url",
+                         "title": "One Month:20000",
+                         "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${alloy}/${brand}/1/20000/${userName}`
+                       },
+                       {
+                         "type": "web_url",
+                         "title": "Two Months:30000",
+                         "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${alloy}/${brand}/2/30000/${userName}`
+                       },
+                       {
+                         "type": "web_url",
+                         "title": "Three Months:40000",
+                         "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${alloy}/${brand}/3/40000/${userName}`
+                       },
+                       
+                     ]      
+                   },
+                   
+ 
+                 ] 
+               }
+             }
+           }
+         }
+ 
+ 
+         requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+           genericMessage
+         ).then( response => {
+           console.log(response)
+         }).fail( error => {
+           console.log(error)
+         })
+          })
+          
+         
+       }
 
 
 
