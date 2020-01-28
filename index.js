@@ -534,10 +534,11 @@ app.post('/webhook', (req, res) => {
          var rentType = userPayload[0]
          var bodyKit = userPayload[1]
          var brand = userPayload[2]
-         var profileLink = 'https://graph.facebook.com/'+webhook_event.sender.id+'?fields=first_name,last_name,&access_token='+pageaccesstoken
+         var profileLink = 'https://graph.facebook.com/'+webhook_event.sender.id+'?fields=first_name,last_name&access_token='+pageaccesstoken
          var userName = []
          requestify.get(profileLink).then(function(success){
            var response = success.getBody();
+           console.log(response)
           userName.push(response.first_name)
           userName.push(response.last_name)
           userName = userName.join(' ')
