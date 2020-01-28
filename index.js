@@ -540,11 +540,9 @@ app.post('/webhook', (req, res) => {
            var response = success.getBody();
           userName.push(response.first_name)
           userName.push(response.last_name)
-         })
+          userName = userName.join(' ')
          console.log(userName)
-         userName = userName.join(' ')
-         console.log(userName)
-        let genericMessage = {
+         let genericMessage = {
           "recipient":{
             "id":webhook_event.sender.id
           },
@@ -592,6 +590,9 @@ app.post('/webhook', (req, res) => {
         }).fail( error => {
           console.log(error)
         })
+         })
+         
+        
       }
     
        
