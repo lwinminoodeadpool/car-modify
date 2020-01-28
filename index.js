@@ -51,6 +51,13 @@ let db = admin.firestore();
   console.log(error)
 })
 
+app.set('view engine', 'ejs');
+app.set('views', __dirname+'/views')
+
+app.get('/orderConfirm', function(req,res) {
+  res.render('index')
+})
+
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -532,19 +539,19 @@ app.post('/webhook', (req, res) => {
                     "subtitle":"you need to pay 20000ks for deposit to rent the body kit. Monthly fees:",                  
                     "buttons":[
                       {
-                        "type": "postback",
+                        "type": "web_url",
                         "title": "One Month:20000",
-                        "payload": "o1"
+                        "url": "https://carmodify.herokuapp.com/orderConfirm"
                       },
                       {
-                        "type": "postback",
+                        "type": "web_url",
                         "title": "Two Months:30000",
-                        "payload": "o2"
+                        "url": "https://carmodify.herokuapp.com/orderConfirm"
                       },
                       {
-                        "type": "postback",
+                        "type": "web_url",
                         "title": "Three Months:40000",
-                        "payload": "o3"
+                        "url": "https://carmodify.herokuapp.com/orderConfirm"
                       },
                       
                     ]      
@@ -567,7 +574,7 @@ app.post('/webhook', (req, res) => {
         })
       }
 
-     
+    
        
      
 
