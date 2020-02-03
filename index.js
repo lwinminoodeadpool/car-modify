@@ -795,7 +795,7 @@ app.post('/webhook', (req, res) => {
         if(userButton.includes('spoirent/')){
           var userPayload = userButton.split('/')
           var rentType = userPayload[0]
-          var spoi = Payload[1]
+          var spoi = userPayload[1]
           var brand = userPayload[2]
           var profileLink = 'https://graph.facebook.com/'+webhook_event.sender.id+'?fields=first_name,last_name&access_token='+pageaccesstoken
           var userName = []
