@@ -793,7 +793,7 @@ app.post('/webhook', (req, res) => {
                 "buttons":[
                   {
                     "type":"web_url",
-                    "url":"https://www.messenger.com/",
+                    "url":"https://www.google.com/",
                     "title":"URL Button",
                     "webview_height_ratio": "full"
                   }
