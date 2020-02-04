@@ -162,7 +162,7 @@ app.post('/webhook', (req, res) => {
                     //start of car part rent 
                     {
                       "title":"Rent",
-                      "image_url":"https://www.drivemyanmar.com/wp-content/uploads/2017/12/car-drift3.jpg",
+                      "image_url":"https://www.logolynx.com/images/logolynx/d8/d8713bda4da556fd93992c3fe5bbb20f.jpeg",
                       "subtitle":"You can rent car bodykit,alloy wheels and spoiler",                      
                       "buttons":[
                         {
