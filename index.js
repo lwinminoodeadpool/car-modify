@@ -795,7 +795,7 @@ app.post('/webhook', (req, res) => {
                     "type":"web_url",
                     "url":"https://www.google.com/",
                     "title":"URL Button",
-                    "webview_height_ratio": "full"
+                    "webview_height_ratio": "compact"
                   }
                 ]
               }
