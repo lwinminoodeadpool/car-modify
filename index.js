@@ -94,7 +94,6 @@ app.get('/webhook', (req, res) => {
       }
     }
   });
-
 // Creates the endpoint for our webhook cmd
 app.post('/webhook', (req, res) => {  
  
@@ -116,7 +115,6 @@ app.post('/webhook', (req, res) => {
         if(webhook_event.postback){
           var userButton = webhook_event.postback.payload
         }
-        
         if (userInput == 'Hi' || userButton == 'Hi' ){
           let welcomeMessage = {
             "recipient":{
@@ -126,7 +124,7 @@ app.post('/webhook', (req, res) => {
               "text":"Hello, Welcome to Curious Wheel!"
             }
           };
-
+          //..................................................................................................................
           let genericMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -155,10 +153,6 @@ app.post('/webhook', (req, res) => {
                       ]      
                     },
                     //end of beautify 
-
-
-
-                    
                     //start of car part rent 
                     {
                       "title":"Rent",
@@ -183,12 +177,6 @@ app.post('/webhook', (req, res) => {
                       ]      
                     },
                     //end of car part rent 
-
-
-
-
-
-
                     //start of car parts trade
                     {
                       "title":"Car part trade",
@@ -212,13 +200,11 @@ app.post('/webhook', (req, res) => {
                         }
                       ]      
                     }
-                    
                   ] 
                 }
               }
             }
           }
-
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             welcomeMessage
           ).then( response => {
@@ -226,7 +212,6 @@ app.post('/webhook', (req, res) => {
           }).fail( error => {
             console.log(error)
           })
-
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             genericMessage
           ).then( response => {
@@ -234,18 +219,10 @@ app.post('/webhook', (req, res) => {
           }).fail( error => {
             console.log(error)
           })
-        
         }
-        
         // end of one part 
-
-
-
-
-
-
+        //...................................................................................................................................
         //star of choose one user said popular carbody kit 
-
         if(userButton == 'bodykit'){
           let genericMessage = {
             "recipient":{
@@ -278,7 +255,6 @@ app.post('/webhook', (req, res) => {
                         }
                       ]      
                     },
-
                     {
                       "title":"RIM and tier",
                       "buttons":[{
@@ -297,7 +273,6 @@ app.post('/webhook', (req, res) => {
                       }
                       ]
                     },
-
                     {
                       "title":"exhaust",
                       "buttons":[
@@ -315,9 +290,7 @@ app.post('/webhook', (req, res) => {
                         "type":"postback",
                         "title":"akrapovic",
                         "payload":"akrap"
-                      }
-
-
+                      },
                     ]
                     }
                   ] 
@@ -325,8 +298,6 @@ app.post('/webhook', (req, res) => {
               }
             }
           }
-
-
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             genericMessage
           ).then( response => {
@@ -335,13 +306,8 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
-
-        
         //end of popular carbody kit 
-
-
-
-
+        //................................................................................................................
         //start car interior 
         if(userButton == 'interior'){
           let genericMessage = {
@@ -374,7 +340,6 @@ app.post('/webhook', (req, res) => {
                         }
                       ]      
                     },
-                   
                     {
                       "title":"interior modified suggestion",                     
                       "buttons":[
@@ -393,7 +358,6 @@ app.post('/webhook', (req, res) => {
                           "title": "Floor mat",
                           "payload": "Trade"
                         }
-
                       ]      
                     },
                     {
@@ -414,7 +378,6 @@ app.post('/webhook', (req, res) => {
                           "title": "tarmwe",
                           "payload": "Trade"
                         }
-
                       ]      
                     }
                   ] 
@@ -422,8 +385,6 @@ app.post('/webhook', (req, res) => {
               }
             }
           }
-
-
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             genericMessage
           ).then( response => {
@@ -432,12 +393,8 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
-
-
-
-
+        //................................................................................................................................
         //if user car bodykit for rent 
-
         if(userButton == 'carbodykit'){
           let genericMessage = {
             "recipient":{
@@ -510,21 +467,14 @@ app.post('/webhook', (req, res) => {
                           "type": "postback",
                           "title": "Rent",
                           "payload": "bodykitrent/santos/suzuki"
-                        }
-                        
+                        }                        
                       ]      
                     },
-
-
-                    
-
                   ] 
                 }
               }
             }
           }
-
-
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             genericMessage
           ).then( response => {
@@ -533,12 +483,8 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
-        
-
-
-
+        //................................................................................................................................
        //database bodykit rent databse order  
-
        if(userButton.includes('bodykitrent/')){
          var userPayload = userButton.split('/')
          var rentType = userPayload[0]
@@ -581,19 +527,14 @@ app.post('/webhook', (req, res) => {
                         "type": "web_url",
                         "title": "Three Months:40000",
                         "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${bodyKit}/${brand}/3/40000/${userName}`
-                      },
-                      
+                      },                      
                     ]      
                   },
-                  
-
                 ] 
               }
             }
           }
         }
-
-
         requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
           genericMessage
         ).then( response => {
@@ -602,15 +543,9 @@ app.post('/webhook', (req, res) => {
           console.log(error)
         })
          })
-         
-        
       }
-    
-
-
-       
+      //...................................................................................................
      //if user rent alloy 
-
      if(userButton == 'alloy'){
           let genericMessage = {
             "recipient":{
@@ -632,7 +567,6 @@ app.post('/webhook', (req, res) => {
                           "title": "Rent",
                           "payload": "alloyrent/star/alloy"
                         }
-                        
                       ]      
                     },
                     {
@@ -644,8 +578,7 @@ app.post('/webhook', (req, res) => {
                           "type": "postback",
                           "title": "Rent",
                           "payload": "alloyrent/black/alloy"
-                        }
-                        
+                        }                       
                       ]      
                     },
                     {
@@ -657,19 +590,14 @@ app.post('/webhook', (req, res) => {
                           "type": "postback",
                           "title": "Rent",
                           "payload": "alloyrent/civic/alloy"
-                        }
-                        
+                        }                       
                       ]      
                     },
-
-
                   ] 
                 }
               }
             }
           }
-
-
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             genericMessage
           ).then( response => {
@@ -678,8 +606,8 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
-
-          //database alloy
+        //..............................................................................................................................
+        //database alloy
         if(userButton.includes('alloyrent/')){
           var userPayload = userButton.split('/')
           var rentType = userPayload[0]
@@ -722,19 +650,14 @@ app.post('/webhook', (req, res) => {
                          "type": "web_url",
                          "title": "Three Months:40000",
                          "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${alloy}/${brand}/3/40000/${userName}`
-                       },
-                       
+                       },                       
                      ]      
                    },
-                   
- 
                  ] 
                }
              }
            }
          }
- 
- 
          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
            genericMessage
          ).then( response => {
@@ -743,12 +666,9 @@ app.post('/webhook', (req, res) => {
            console.log(error)
          })
           })
-          
-         
        }
-
+       //......................................................................................................................
        //start spoiler rent 
-
        if(userButton == 'spoi'){
         let genericMessage = {
           "recipient":{
@@ -769,8 +689,7 @@ app.post('/webhook', (req, res) => {
                         "type": "postback",
                         "title": "Rent",
                         "payload": "spoirent/star/spoiler"
-                      }
-                      
+                      }                      
                     ]      
                   },
                   {
@@ -783,19 +702,13 @@ app.post('/webhook', (req, res) => {
                         "title": "Rent",
                         "payload": "spoirent/circle/spoiler"
                       }
-                      
                     ]      
                   },
-
-
-
                 ] 
               }
             }
           }
         }
-
-
         requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
           genericMessage
         ).then( response => {
@@ -804,7 +717,7 @@ app.post('/webhook', (req, res) => {
           console.log(error)
         })
       }
-
+      //.................................................................................................................
         //database spoiler 
         if(userButton.includes('spoirent/')){
           var userPayload = userButton.split('/')
@@ -848,19 +761,14 @@ app.post('/webhook', (req, res) => {
                          "type": "web_url",
                          "title": "Three Months:40000",
                          "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${spoi}/${brand}/3/40000/${userName}`
-                       },
-                       
+                       },  
                      ]      
                    },
-                   
- 
                  ] 
                }
              }
            }
          }
- 
- 
          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
            genericMessage
          ).then( response => {
@@ -869,10 +777,32 @@ app.post('/webhook', (req, res) => {
            console.log(error)
          })
           })
-          
-         
        }
-
+       ///...............................................................................................
+       if(userButton == 'sell'){
+        let genericMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"Try the URL button!",
+                "buttons":[
+                  {
+                    "type":"web_url",
+                    "url":"https://www.messenger.com/",
+                    "title":"URL Button",
+                    "webview_height_ratio": "full"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
 
                     
                   
