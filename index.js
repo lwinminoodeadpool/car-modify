@@ -176,6 +176,28 @@ app.post('/webhook', (req, res) => {
                         }
                       ]      
                     },
+                    {
+                      "title":"Rent",
+                      "image_url":"https://www.logolynx.com/images/logolynx/d8/d8713bda4da556fd93992c3fe5bbb20f.jpeg",
+                      "subtitle":"You can rent car bodykit,alloy wheels and spoiler",                      
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "Exhaust",
+                          "payload": "rent_exhaust"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "steering",
+                          "payload": "rent_steering"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "seats",
+                          "payload": "rent_seats"
+                        }
+                      ]      
+                    },
                     //end of car part rent 
                     //start of car parts trade
                     {
