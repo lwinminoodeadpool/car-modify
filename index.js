@@ -419,6 +419,11 @@ app.post('/webhook', (req, res) => {
         //................................................................................................................................
         //if user car bodykit for rent 
         if(userInput == 'carbodykit'){
+          db.collection('bodyparts').where("Name", "==", "Alloy").get().then(result => {
+            result.forEach(items => {
+              console.log(items.data().Name);
+            })
+          })
           let genericMessage = {
             "recipient":{
               "id":webhook_event.sender.id
