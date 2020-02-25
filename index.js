@@ -221,7 +221,7 @@ app.post('/webhook', (req, res) => {
                           "type":"web_url",
                           "url":"https://carmodify.herokuapp.com/sell",
                           "title":"Sell",
-                          "webview_height_ratio": "tall"
+                          "webview_height_ratio": "full"
                         },
                         {
                           "type":"postback",
@@ -547,17 +547,20 @@ app.post('/webhook', (req, res) => {
                       {
                         "type": "web_url",
                         "title": "One Month:20000",
-                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${bodyKit}/${brand}/1/20000/${userName}`
+                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${bodyKit}/${brand}/1/20000/${userName}`,
+                        "webview_height_ratio": "full"
                       },
                       {
                         "type": "web_url",
                         "title": "Two Months:30000",
-                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${bodyKit}/${brand}/2/30000/${userName}`
+                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${bodyKit}/${brand}/2/30000/${userName}`,
+                        "webview_height_ratio": "full"
                       },
                       {
                         "type": "web_url",
                         "title": "Three Months:40000",
-                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${bodyKit}/${brand}/3/40000/${userName}`
+                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${bodyKit}/${brand}/3/40000/${userName}`,
+                        "webview_height_ratio": "full"
                       },                      
                     ]      
                   },
