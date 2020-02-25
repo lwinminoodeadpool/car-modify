@@ -607,7 +607,7 @@ app.post('/webhook', (req, res) => {
 
            i = i+1
 
-           if(i = result.size){
+           if(i == result.size){
             requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
               genericMessage
             ).then( response => {
