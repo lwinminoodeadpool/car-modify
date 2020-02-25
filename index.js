@@ -422,13 +422,6 @@ app.post('/webhook', (req, res) => {
         //................................................................................................................................
         //if user car bodykit for rent 
         if(userInput == 'carbodykit'){
-          db.collection('bodyparts').where("Name", "==", "Alloy").get().then(result => {
-            result.forEach(items => {
-              console.log(items.data().Name);
-            })
-          }).catch(error => {
-            console.log(error);
-          })
           let genericMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -580,64 +573,53 @@ app.post('/webhook', (req, res) => {
       //...................................................................................................
      //if user rent alloy 
      if(userInput == 'alloy'){
-          let genericMessage = {
-            "recipient":{
-              "id":webhook_event.sender.id
-            },
-            "message":{
-              "attachment":{
-                "type":"template",
-                "payload":{
-                  "template_type":"generic",
-                  "elements":[
-                    {
-                      "image_url":"https://www.autoalloys.com/content/images/thumbs/0002915_19-cades-apollo-silver-crest-alloy-wheels_550.png",
-                      "title":"15 inches star alloy",
-                      "subtitle":"Avaliable alloy for rent",                  
-                      "buttons":[
-                        {
-                          "type": "postback",
-                          "title": "Rent",
-                          "payload": "alloyrent/star/alloy"
-                        }
-                      ]      
-                    },
-                    {
-                      "image_url":"https://miro.medium.com/max/1200/0*NHdgFITLH1dmNhhz.jpeg",
-                      "title":"16 inches black star style alloy",
-                      "subtitle":"Avaliable alloy for rent",                  
-                      "buttons":[
-                        {
-                          "type": "postback",
-                          "title": "Rent",
-                          "payload": "alloyrent/black/alloy"
-                        }                       
-                      ]      
-                    },
-                    {
-                      "image_url":"https://img.rnudah.com/images/85/851908074753163.jpg",
-                      "title":" 16 inches Honda civic orginal alloy",
-                      "subtitle":"Avaliable alloy for rent",                  
-                      "buttons":[
-                        {
-                          "type": "postback",
-                          "title": "Rent",
-                          "payload": "alloyrent/civic/alloy"
-                        }                       
-                      ]      
-                    },
-                  ] 
-                }
-              }
+      let genericMessage = {
+        "recipient":{
+          "id":webhook_event.sender.id
+        },
+        "message":{
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"generic",
+              "elements":[
+              ] 
             }
           }
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-            genericMessage
-          ).then( response => {
-            console.log(response)
-          }).fail( error => {
-            console.log(error)
-          })
+        }
+      } 
+      var i = 1;
+      db.collection('rent').where("Type", "==", "alloyWheel").get().then(result => {
+         result.forEach(items => {
+           let wheelItem = {
+             "image_url": items.data().Img,
+             "title": items.data().Name,
+             "subtitle": "avaialbelawjoef",
+             "buttons" : [
+               {
+                "type": "postback",
+                "title": "Rent",
+                "payload": `alloyrent/${items.data().payload}/alloy`
+               }
+             ]
+           }
+           genericMessage.message.attachment.payload.elements.push(wheelItem);
+
+           i = i+1
+
+           if(i = result.size){
+            requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+              genericMessage
+            ).then( response => {
+              console.log(response)
+            }).fail( error => {
+              console.log(error)
+            })
+           }
+         })
+       })
+          
+          
         }
         //..............................................................................................................................
         //database alloy
