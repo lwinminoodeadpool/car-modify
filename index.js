@@ -67,6 +67,10 @@ app.get('/orderConfirm/:rentType/:Item/:CarBrand/:Month/:price/:name', function(
   res.render('index', {rentType: rentType, item: item, brand: brand, month: month, price: price, name: name})
 })
 
+app.get('/sell', function(req,res) {
+  res.render('sell')
+})
+
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -214,9 +218,10 @@ app.post('/webhook', (req, res) => {
                           "payload": "Trade"
                         },
                         {
-                          "type":"postback",
+                          "type":"web_url",
+                          "url":"https://carmodify.herokuapp.com/sell",
                           "title":"Sell",
-                          "payload":"sell"
+                          "webview_height_ratio": "tall"
                         },
                         {
                           "type":"postback",
@@ -794,39 +799,7 @@ app.post('/webhook', (req, res) => {
           })
        }
        ///...............................................................................................
-       if(userInput == 'sell'){
-        let genericMessage = {
-          "recipient":{
-            "id":webhook_event.sender.id
-          },
-          "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"button",
-                "text":"Try the URL button!",
-                "buttons":[
-                  {
-                    "type":"web_url",
-                    "url":"https://www.google.com/",
-                    "title":"URL Button",
-                    "webview_height_ratio": "compact"
-                  }
-                ]
-              }
-            }
-          }
-        }
-        
-        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-        genericMessage
-      ).then( response => {
-        console.log(response)
-      }).fail( error => {
-        console.log(error)
-      })
-
-      }
+       
       //........................................................................................................................
       //start of rent exhaust 
       if(userInput == 'rent_exhaust'){

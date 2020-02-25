@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Curious Wheels - Confirmation</title>
+    <title>Curious Wheels - Car Part sell</title>
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -16,45 +16,58 @@
             <div class="col-sm-4 w-100 text-center">
     
         <table class="table table-striped">
-            <th>
-                <tr>
-                    <td colspan="2" class="text-center"><h2>Order Confirm</h2></td>
-                </tr>
+            <tr>
                 
-            </th>
-            <tr>
-                <td>Phone Number</td>
-                <td><input type="number" id="phone"></td>
+                    <td colspan="2" class="text-center"><p class="h2">Car part Selling Form</p></td>
+                
+                
             </tr>
             <tr>
-                <td>Address</td>
-                <td><input type="text" id="add"></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                          <input type="checkbox" aria-label="Checkbox for following text input">
-                        </span>
-                        <input type="text" class="form-control" aria-label="Text input with checkbox">
-                      </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Shop</td>
+                <td>Car Brand</td>
                 <td>
                         <select class="custom-select" id="brand">
                           <option selected>Choose Brand</option>
-                          <option value="1">Shop 1</option>
-                          <option value="2">Shop 2</option>
+                          <option value="1">Toyota</option>
+                          <option value="2">Mezda</option>
+                          <option value="3">Honda</option>
+                          <option value="3">Nissan</option>
                         </select>
                       
                 </td>
             </tr>
-                
-            
+            <tr>
+                <td>Car Part photo</td>
+                <td><div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="img">
+                      <label class="custom-file-label" for="img">Choose file</label>
+                    </div>
+                  </div></td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td><input type="number" class="form-control" id="price"></td>
+            </tr>
+
+            <tr>
+                <td>Phone Number</td>
+                <td>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">+95</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="number" class="form-control" id="phone">
+                        </div>
+                      </div>
+                    </td>
+            </tr>
+
         </table>
-        <button onclick="addtodb()" class="btn btn-primary">submit</button>
+        <button onclick="addtodb()" class="btn btn-primary">Submit</button>
         
     
             </div>
@@ -83,28 +96,22 @@
     appId: "1:734199569982:web:7e99744a1bcb0efaebbb6f",
     measurementId: "G-9T7SRR1CDN"
   };
+  
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  var rentType = '<%= rentType %>';
-  var item = '<%= item %>';
-  var brand = '<%= brand %>';
-  var month = '<%= month %>';
-  var price = '<%= price %>';
   function addtodb() {
-      var phone = document.getElementById('phone').value
-      var add = document.getElementById('add').value
-    console.log(name, phone, add)
+    var brand = document.getElementById('brand').value  
+    var phone = document.getElementById('phone').value
+    var img = document.getElementById('img').value
+    var price = document.getElementById('price').value
+    console.log(brand, phone, img, price);
       firebase.auth().signInWithEmailAndPassword('carmodify@gmail.com', '123456').then(function(succ) {
         var db = firebase.firestore();
-    db.collection('order').add({
-        name: '<%= name %>',
-        phone: phone,
-        address: add,
-        rentType: rentType,
-        item: item,
+    db.collection('sell').add({
         brand: brand,
-        month: month,
-        price: price
+        img: img,
+        price: price,
+        phone: phone
 
     }).then(success => {
         window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://image.shutterstock.com/image-vector/thankyou-word-text-handwritten-rainbow-260nw-1319893574.jpg&display_text=Thankyou')
