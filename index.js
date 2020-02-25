@@ -26,7 +26,7 @@ var serviceAccount ={
 
 admin.initializeApp(serviceAccount);
 
-let db = admin.firestore();
+const db = admin.firestore();
 
 
   const pageaccesstoken = 'EAAhuvKStHYYBADH7fb2OYXkowbQFVjqvT8uOYyFg68f6nkTsF3wSs2kdez3SXbVYqIAwJxemTArJD9ZA7BSC9QGl2LekOfmwKTLixuH1IfTxIiQUU9XQXbDdeBjMGPH6gqrIAr5uncNHG2zsulKdc7u9zoHYYv7eMaXuwAcPWqnewzAOk'
@@ -424,6 +424,8 @@ app.post('/webhook', (req, res) => {
             result.forEach(items => {
               console.log(items.data().Name);
             })
+          }).catch(error => {
+            console.log(error);
           })
           let genericMessage = {
             "recipient":{
