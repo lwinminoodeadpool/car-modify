@@ -588,7 +588,7 @@ app.post('/webhook', (req, res) => {
           }
         }
       } 
-      var i = 1;
+      var i = 0;
       db.collection('rent').where("Type", "==", "alloyWheel").get().then(result => {
          result.forEach(items => {
            let wheelItem = {
