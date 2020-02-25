@@ -113,9 +113,9 @@ app.post('/webhook', (req, res) => {
           var userInput = webhook_event.message.text
         }
         if(webhook_event.postback){
-          var userButton = webhook_event.postback.payload
+          var userInput = webhook_event.postback.payload
         }
-        if (userInput == 'Hi' || userButton == 'Hi' ){
+        if (userInput == 'Hi'){
           let welcomeMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -245,7 +245,7 @@ app.post('/webhook', (req, res) => {
         // end of one part 
         //...................................................................................................................................
         //star of choose one user said popular carbody kit 
-        if(userButton == 'bodykit'){
+        if(userInput == 'bodykit'){
           let genericMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -332,7 +332,7 @@ app.post('/webhook', (req, res) => {
         //................................................................................................................
 
         //start car interior 
-        if(userButton == 'interior'){
+        if(userInput == 'interior'){
           let genericMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -418,7 +418,7 @@ app.post('/webhook', (req, res) => {
         }
         //................................................................................................................................
         //if user car bodykit for rent 
-        if(userButton == 'carbodykit'){
+        if(userInput == 'carbodykit'){
           let genericMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -508,8 +508,8 @@ app.post('/webhook', (req, res) => {
         }
         //................................................................................................................................
        //database bodykit rent databse order  
-       if(userButton.includes('bodykitrent/')){
-         var userPayload = userButton.split('/')
+       if(userInput.includes('bodykitrent/')){
+         var userPayload = userInput.split('/')
          var rentType = userPayload[0]
          var bodyKit = userPayload[1]
          var brand = userPayload[2]
@@ -569,7 +569,7 @@ app.post('/webhook', (req, res) => {
       }
       //...................................................................................................
      //if user rent alloy 
-     if(userButton == 'alloy'){
+     if(userInput == 'alloy'){
           let genericMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -631,8 +631,8 @@ app.post('/webhook', (req, res) => {
         }
         //..............................................................................................................................
         //database alloy
-        if(userButton.includes('alloyrent/')){
-          var userPayload = userButton.split('/')
+        if(userInput.includes('alloyrent/')){
+          var userPayload = userInput.split('/')
           var rentType = userPayload[0]
           var alloy = userPayload[1]
           var brand = userPayload[2]
@@ -692,7 +692,7 @@ app.post('/webhook', (req, res) => {
        }
        //......................................................................................................................
        //start spoiler rent 
-       if(userButton == 'spoi'){
+       if(userInput == 'spoi'){
         let genericMessage = {
           "recipient":{
             "id":webhook_event.sender.id
@@ -742,8 +742,8 @@ app.post('/webhook', (req, res) => {
       }
       //.................................................................................................................
         //database spoiler 
-        if(userButton.includes('spoirent/')){
-          var userPayload = userButton.split('/')
+        if(userInput.includes('spoirent/')){
+          var userPayload = userInput.split('/')
           var rentType = userPayload[0]
           var spoi = userPayload[1]
           var brand = userPayload[2]
@@ -802,7 +802,7 @@ app.post('/webhook', (req, res) => {
           })
        }
        ///...............................................................................................
-       if(userButton == 'sell'){
+       if(userInput == 'sell'){
         let genericMessage = {
           "recipient":{
             "id":webhook_event.sender.id
@@ -837,7 +837,7 @@ app.post('/webhook', (req, res) => {
       }
       //........................................................................................................................
       //start of rent exhaust 
-      if(userButton == 'rent_exhaust'){
+      if(userInput == 'rent_exhaust'){
         let genericMessage = {
           "recipient":{
             "id":webhook_event.sender.id
@@ -887,8 +887,8 @@ app.post('/webhook', (req, res) => {
       }
       //.................................................................................................................
         //database spoiler 
-        if(userButton.includes('spoirent/')){
-          var userPayload = userButton.split('/')
+        if(userInput.includes('spoirent/')){
+          var userPayload = userInput.split('/')
           var rentType = userPayload[0]
           var spoi = userPayload[1]
           var brand = userPayload[2]
