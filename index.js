@@ -710,9 +710,9 @@ app.post('/webhook', (req, res) => {
           }
         } 
         var i = 0;
-        db.collection('rent').where("Type", "==", "spoirent").get().then(result => {
+        db.collection('rent').where("Type", "==", "spoilerrent").get().then(result => {
            result.forEach(items => {
-             let wheelItem = {
+             let spoilerItem = {
                "image_url": items.data().Img,
                "title": items.data().Name,
                "subtitle": "available alloy for rent",
