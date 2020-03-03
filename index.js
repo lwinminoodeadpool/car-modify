@@ -602,7 +602,7 @@ app.post('/webhook', (req, res) => {
            let wheelItem = {
              "image_url": items.data().Img,
              "title": items.data().Name,
-             "subtitle": "avaialbelawjoef",
+             "subtitle": "available alloy for rent",
              "buttons" : [
                {
                 "type": "postback",
@@ -692,6 +692,7 @@ app.post('/webhook', (req, res) => {
        }
        //......................................................................................................................
        //start spoiler rent 
+
        if(userInput == 'spoi'){
         let genericMessage = {
           "recipient":{
@@ -703,43 +704,49 @@ app.post('/webhook', (req, res) => {
               "payload":{
                 "template_type":"generic",
                 "elements":[
-                  {
-                    "image_url":"http://www.japspeed.co.uk/pub/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/z/z/zz00816-01.jpg",
-                    "title":"japspeed-carbon-fibre-bgw-spoiler",
-                    "subtitle":"Avaliable spoiler for rent",                  
-                    "buttons":[
-                      {
-                        "type": "postback",
-                        "title": "Rent",
-                        "payload": "spoirent/star/spoiler"
-                      }                      
-                    ]      
-                  },
-                  {
-                    "image_url":"http://www.japspeed.co.uk/pub/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/z/z/zz00816-01.jpg",
-                    "title":"japspeed-carbon-fibre-bgw-spoiler",
-                    "subtitle":"Avaliable spoiler for rent",                  
-                    "buttons":[
-                      {
-                        "type": "postback",
-                        "title": "Rent",
-                        "payload": "spoirent/circle/spoiler"
-                      }
-                    ]      
-                  },
                 ] 
               }
             }
           }
-        }
-        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-          genericMessage
-        ).then( response => {
-          console.log(response)
-        }).fail( error => {
-          console.log(error)
-        })
-      }
+        } 
+        var i = 0;
+        db.collection('rent').where("Type", "==", "spoirent").get().then(result => {
+           result.forEach(items => {
+             let wheelItem = {
+               "image_url": items.data().Img,
+               "title": items.data().Name,
+               "subtitle": "available alloy for rent",
+               "buttons" : [
+                 {
+                  "type": "postback",
+                  "title": "Rent",
+                  "payload": `spoirent/${items.data().payload}/spoi`
+                 }
+               ]
+             }
+             genericMessage.message.attachment.payload.elements.push(wheelItem);
+  
+             i = i+1
+  
+             if(i == result.size){
+              requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+                genericMessage
+              ).then( response => {
+                console.log(response)
+              }).fail( error => {
+                console.log(error)
+              })
+             }
+           })
+         })
+            
+            
+          }
+
+          
+
+
+       
       //.................................................................................................................
         //database spoiler 
         if(userInput.includes('spoirent/')){
