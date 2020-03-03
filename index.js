@@ -215,7 +215,7 @@ app.post('/webhook', (req, res) => {
                         {
                           "type": "postback",
                           "title": "Car part trade",
-                          "payload": "Trade"
+                          "payload": "tradecar"
                         },
                         {
                           "type":"web_url",
@@ -377,17 +377,17 @@ app.post('/webhook', (req, res) => {
                         {
                           "type": "postback",
                           "title": "Audio",
-                          "payload": "Trade"
+                          "payload": "audioo"
                         },
                         {
                           "type": "postback",
                           "title": "Camera",
-                          "payload": "Trade"
+                          "payload": "camera"
                         },
                         {
                           "type": "postback",
                           "title": "Floor mat",
-                          "payload": "Trade"
+                          "payload": "floor_mat"
                         }
                       ]      
                     },
@@ -397,17 +397,17 @@ app.post('/webhook', (req, res) => {
                         {
                           "type": "postback",
                           "title": "Sule",
-                          "payload": "Trade"
+                          "payload": "location_sule"
                         },
                         {
                           "type": "postback",
                           "title": "Sanchaung",
-                          "payload": "Trade"
+                          "payload": "location_sanchaung"
                         },
                         {
                           "type": "postback",
                           "title": "tarmwe",
-                          "payload": "Trade"
+                          "payload": "location_tarmwe"
                         }
                       ]      
                     }
@@ -914,7 +914,53 @@ app.post('/webhook', (req, res) => {
          })
           })
        }
-                    
+      
+       if(userInput == 'tradecar'){
+        let genericMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "title":"what you want to trade from Curious Wheel?",                    
+                    "buttons":[
+                      {
+                        "type": "postback",
+                        "title": "Alloy Wheel",
+                        "payload": "alloywheeltrade"
+                      },
+                      {
+                        "type": "postback",
+                        "title": "Head Lamp",
+                        "payload": "headlamptrade"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Seat",
+                        "payload":"seattrade"
+                      }
+                    ]      
+                  },
+                 
+                  
+                ] 
+              }
+            }
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+          genericMessage
+        ).then( response => {
+          console.log(response)
+        }).fail( error => {
+          console.log(error)
+        })
+      }
                   
       });
   
