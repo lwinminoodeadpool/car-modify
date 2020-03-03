@@ -45,6 +45,12 @@
                     </div>
                   </div></td>
             </tr>
+
+            <tr>
+              <td>Description</td>
+              <td><input type="text" class="form-control" id="description"></td>
+          </tr>
+
             <tr>
                 <td>Price</td>
                 <td><input type="number" class="form-control" id="price"></td>
@@ -102,14 +108,16 @@
     var phone = document.getElementById('phone').value
     var img = document.getElementById('img').value
     var price = document.getElementById('price').value
-    console.log(brand, phone, img, price);
+    var description = document.getElementById('description').value
+    console.log(brand, phone, img, price, description);
       firebase.auth().signInWithEmailAndPassword('carmodify@gmail.com', '123456').then(function(succ) {
         var db = firebase.firestore();
     db.collection('sell').add({
         brand: brand,
         img: img,
         price: price,
-        phone: phone
+        phone: phone,
+        description: description
 
     }).then(success => {
         window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://image.shutterstock.com/image-vector/thankyou-word-text-handwritten-rainbow-260nw-1319893574.jpg&display_text=Thankyou')
