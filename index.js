@@ -688,7 +688,7 @@ app.post('/webhook', (req, res) => {
        //start spoiler rent 
 
        if(userInput == 'spoi'){
-        let genericMessage = {
+        var genericMessage = {
           "recipient":{
             "id":webhook_event.sender.id
           },
@@ -723,11 +723,10 @@ app.post('/webhook', (req, res) => {
              i = i+1
   
              if(i == result.size){
-               console.log('sending message');
+               console.log(genericMessage);
               requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
                 genericMessage
               ).then( response => {
-                console.log(response)
               }).fail( error => {
                 console.log(error)
               })
