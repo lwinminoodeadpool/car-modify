@@ -92,7 +92,6 @@ app.get('/webhook', (req, res) => {
       if (mode === 'subscribe' && token === VERIFY_TOKEN) {
         
         // Responds with the challenge token from the request
-        console.log('WEBHOOK_VERIFIED');
         res.status(200).send(challenge);
       
       } else {
@@ -115,7 +114,6 @@ app.post('/webhook', (req, res) => {
         // Gets the message. entry.messaging is an array, but 
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
-        console.log(webhook_event);
         if(webhook_event.message){
           var userInput = webhook_event.message.text
         }
@@ -525,11 +523,9 @@ app.post('/webhook', (req, res) => {
          var userName = []
          requestify.get(profileLink).then(function(success){
            var response = success.getBody();
-           console.log(response)
           userName.push(response.first_name)
           userName.push(response.last_name)
           userName = userName.join(' ')
-         console.log(userName)
          let genericMessage = {
           "recipient":{
             "id":webhook_event.sender.id
@@ -640,11 +636,9 @@ app.post('/webhook', (req, res) => {
           var userName = []
           requestify.get(profileLink).then(function(success){
             var response = success.getBody();
-            console.log(response)
            userName.push(response.first_name)
            userName.push(response.last_name)
            userName = userName.join(' ')
-          console.log(userName)
           let genericMessage = {
            "recipient":{
              "id":webhook_event.sender.id
@@ -729,7 +723,7 @@ app.post('/webhook', (req, res) => {
              i = i+1
   
              if(i == result.size){
-               console.log(genericMessage);
+               console.log('sending message');
               requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
                 genericMessage
               ).then( response => {
@@ -759,11 +753,9 @@ app.post('/webhook', (req, res) => {
           var userName = []
           requestify.get(profileLink).then(function(success){
             var response = success.getBody();
-            console.log(response)
            userName.push(response.first_name)
            userName.push(response.last_name)
            userName = userName.join(' ')
-          console.log(userName)
           let genericMessage = {
            "recipient":{
              "id":webhook_event.sender.id
@@ -872,11 +864,9 @@ app.post('/webhook', (req, res) => {
           var userName = []
           requestify.get(profileLink).then(function(success){
             var response = success.getBody();
-            console.log(response)
            userName.push(response.first_name)
            userName.push(response.last_name)
            userName = userName.join(' ')
-          console.log(userName)
           let genericMessage = {
            "recipient":{
              "id":webhook_event.sender.id
