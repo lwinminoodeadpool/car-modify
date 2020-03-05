@@ -724,11 +724,12 @@ app.post('/webhook', (req, res) => {
                  }
                ]
              }
-             genericMessage.message.attachment.payload.elements.push(spoilerItem );
+             genericMessage.message.attachment.payload.elements.push(spoilerItem);
   
              i = i+1
   
              if(i == result.size){
+               console.log(genericMessage);
               requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
                 genericMessage
               ).then( response => {
