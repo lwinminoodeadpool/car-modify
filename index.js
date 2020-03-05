@@ -705,12 +705,11 @@ app.post('/webhook', (req, res) => {
         } 
         var i = 0;
         db.collection('rent').where("Type", "==", "spoilerrent").get().then(result => {
-          console.log(result)
            result.forEach(items => {
-             console.log(items.id)
+             console.log(items.data().Img)
              var spoilerItem = {
-               "image_url": items.data().Img,
-               "title": items.data().Name,
+               "image_url": `${items.data().Img}`,
+               "title": `${items.data().Name}`,
                "subtitle": "available alloy for rent",
                "buttons" : [
                  {
