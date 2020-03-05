@@ -724,7 +724,7 @@ app.post('/webhook', (req, res) => {
                  }
                ]
              }
-             genericMessage.message.attachment.payload.elements.push(wheelItem);
+             genericMessage.message.attachment.payload.elements.push(spoilerItem);
   
              i = i+1
   
