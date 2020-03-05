@@ -706,7 +706,7 @@ app.post('/webhook', (req, res) => {
         var i = 0;
         db.collection('rent').where("Type", "==", "spoilerrent").get().then(result => {
            result.forEach(items => {
-             let spoilerItem = {
+             var spoilerItem = {
                "image_url": items.data().Img,
                "title": items.data().Name,
                "subtitle": "available alloy for rent",
@@ -723,8 +723,8 @@ app.post('/webhook', (req, res) => {
              i = i+1
   
              if(i == result.size){
-               console.log(genericMessage);
-              requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+               console.log(genericMessage.message.attachment.payload);
+              requestify.post(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`, 
                 genericMessage
               ).then( response => {
               }).fail( error => {
