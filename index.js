@@ -694,6 +694,7 @@ app.post('/webhook', (req, res) => {
         } 
         var i = 0;
         db.collection('rent').where("Type", "==", "spoilerrent").get().then(result => {
+          console.log(result.size)
            result.forEach(items => {
              console.log(items.data().Img)
              var spoilerItem = {
