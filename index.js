@@ -9,7 +9,7 @@ const
 
 const admin = require('firebase-admin');
 
-var serviceAccount = process.env.serviceAccount;
+var serviceAccount = JSON.parse(process.env.serviceAccount);
 
 
 
