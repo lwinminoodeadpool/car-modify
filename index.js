@@ -9,18 +9,7 @@ const
 
 const admin = require('firebase-admin');
 
-var serviceAccount ={
-  "type": "service_account",
-  "project_id": "carmodify-lmo",
-  "private_key_id": "7cc065115da896f4dd4c666f5d3657fe5a91e050",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDUDAut1jwlhkJQ\nF7Zu9iehuZf34wyroo2BjQk3mUcDGeQL0sCGNhoAWNY7v0PPcWEpJFmnc7j9B/fm\n93i3OAzoE1c0vCiP/X9Ov1J6ZjR+Tcl7bcSa45fzm5BP5OnJDuj/JWlpT57LIbdp\nGLUo9jbveESYSpMg2OePkhItRYqqIvbMImjn9b/KT55WP8F1K/8pC7tOL9rBHWL4\nsrsuokiPB3k7XIgwgrJibFGyjocU9fhfEDK+Vq7eIrM+UFHhhFfLWLBbfFI6dD7I\nERzlbdmd+7bxJjQiudpJ1FBleQQCpJ4whaVnORCV/0+zm+KDY21+ZgdkECjfWIwG\niniV+DU3AgMBAAECggEAX3MmpLMtcuS7H+t0owEp+NoexqZNM0tiMEFIt17HQOWc\nKhhNsnxS+voCQXXIs+3BAzCKLN7iFABMvoqCK9NOt/7Qv/u8tIgzEML9gPxVv88L\nFYTlPaWaZj2N2fDcrbUI+6UfDJkbDSwZr/S/w3cFZok4M2dKUDxjC9UAWqGVmBx/\nzbT1BYrTBNljKRiqlwOEp7zZJ10LMukLRS6sffbDGj5SRc9/2Hl7UaBMFbOIXe9V\ntl/nhHjPkX4mLZK69WQLEagE3AFeFD1G8hA1YumNaR/2BBYZO+a2RLYocV39TTmT\nOG+vzkdSL6pYLLD2OW6sWDhNujAbvXheNhKmFz5CaQKBgQD45Usqya0Y2jwWtTNd\nVfijmnEoru3e6/FGhLFc8J00vBihm2OBCBBpbbHI1KU2V8HZ0uyqFzutMiVdu5Ef\n8qBChDYdoRkl0O19LrfsIzBQw18rGLM8LE8HXLZTtPRJdzolxVLUv1VfKWkQQf1w\nWeev26FIuMm9xBmHeomE1lVCGQKBgQDaGX7L3J69aFJAxCN/ns17oMeKyd03Ynd/\nhYEw3nzkOd/P6duR2xXNjDq2fqz3A9owl1PtNUM+x0VQp0/HvvjWIuZp/oK5rXC0\nTTiMneO3YyCzFhCg96m7eIOQXlGD3AVZJeuAw4b1NgiVdUMumywfq4lDXbFE3NNf\nR0FB+Kw7zwKBgDhnnjVAJx4uttdekRlh1ksdQO+7VOTkC3WztI4faUD+L4bQNCiV\nr0J1PYkJx7cdBC1dA404XqnNZ3Jqg2T+Ext/4tOsIorTYj6wS7YT82saG4Mkwdmt\nIOvGMvudUo8jmeXdZfwYsDw0oj6w9cJ0XXEZEN/uIKoEutRdDLUx7XhhAoGBAL66\nTQg6hxdcg5Hf9KtGVKwojlfw8GPe2GHMfo4eA1oSwocwG7QRw59dYnr1jIz38XdM\n3zgxu/zKhvNhXYNwnmulWZqX1/pIkqcaYLmX2ewl5BK42RHrg6NOYL9/vAlz/7lW\nT/zrALqv5hHN2lKHoK6RdBhVdxChjLdluMvYi8ZBAoGAc3RC+Ga6OcPaAaQdJoEN\n/dUmeIRkaC+7Ym84qOXNzumq6ZSRa2gHZKRZGY+riIaYWQgRlQS0pHA2qdIbSYsY\nK2q9NxY64II9W5LLeZzSUTIOmF50BfXI9DrsTa/6bUQVm+SdTcGnuhaK/RTX2OVJ\n0sGO6bcsl8b+VjoP/PatLyE=\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-y8njc@carmodify-lmo.iam.gserviceaccount.com",
-  "client_id": "106330645817811096783",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-y8njc%40carmodify-lmo.iam.gserviceaccount.com"
-}
+var serviceAccount = process.env.serviceAccount;
 
 
 
