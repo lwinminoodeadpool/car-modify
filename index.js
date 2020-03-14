@@ -416,6 +416,7 @@ app.post('/webhook', (req, res) => {
           })
         }
         //................................................................................................................................
+        //star of rent session 
         //if user rent_headlight 
         if(userInput == 'rent_headlight'){
           let genericMessage = {
@@ -469,11 +470,11 @@ app.post('/webhook', (req, res) => {
 
        
         //................................................................................................................................
-       //database bodykit rent databse order  
+       //database head light databse order  
        if(userInput.includes('headlightrent/')){
          var userPayload = userInput.split('/')
          var rentType = userPayload[0]
-         var headlightt = userPayload[1]
+         var headlight = userPayload[1]
          var brand = userPayload[2]
          var profileLink = 'https://graph.facebook.com/'+webhook_event.sender.id+'?fields=first_name,last_name&access_token='+pageaccesstoken
          var userName = []
@@ -499,19 +500,19 @@ app.post('/webhook', (req, res) => {
                       {
                         "type": "web_url",
                         "title": "One Month:20000",
-                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${headlightt}/${brand}/1/20000/${userName}`,
+                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${headlight}/${brand}/1/20000/${userName}`,
                         "webview_height_ratio": "full"
                       },
                       {
                         "type": "web_url",
                         "title": "Two Months:30000",
-                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${headlightt}/${brand}/2/30000/${userName}`,
+                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${headlight}/${brand}/2/30000/${userName}`,
                         "webview_height_ratio": "full"
                       },
                       {
                         "type": "web_url",
                         "title": "Three Months:40000",
-                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${headlightt}/${brand}/3/40000/${userName}`,
+                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${headlight}/${brand}/3/40000/${userName}`,
                         "webview_height_ratio": "full"
                       },                      
                     ]      
@@ -642,7 +643,6 @@ app.post('/webhook', (req, res) => {
        }
        //......................................................................................................................
        //start spoiler rent 
-
        if(userInput == 'spoi'){
         var genericMessage = {
           "recipient":{
@@ -694,8 +694,6 @@ app.post('/webhook', (req, res) => {
             
             
           }
-
-       
       //.................................................................................................................
         //database spoiler 
         if(userInput.includes('spoirent/')){
@@ -759,8 +757,9 @@ app.post('/webhook', (req, res) => {
        
       //........................................................................................................................
       //start of rent exhaust 
+     
       if(userInput == 'rent_exhaust'){
-        let genericMessage = {
+        var genericMessage = {
           "recipient":{
             "id":webhook_event.sender.id
           },
@@ -770,49 +769,50 @@ app.post('/webhook', (req, res) => {
               "payload":{
                 "template_type":"generic",
                 "elements":[
-                  {
-                    "image_url":"https://media.karousell.com/media/photos/products/2017/04/29/hks_hi_power_spec_r_exhaust_system_for_subaru_impreza_wrx_1493449045_c0eca7d2.jpg",
-                    "title":"exhaust",
-                    "subtitle":"Avaliable exhaust for rent",                  
-                    "buttons":[
-                      {
-                        "type": "postback",
-                        "title": "Rent",
-                        "payload": "spoirent/star/spoiler"
-                      }                      
-                    ]      
-                  },
-                  {
-                    "image_url":"https://ae01.alicdn.com/kf/HTB1Shu8Xf5G3KVjSZPxq6zI3XXac.jpg_q50.jpg",
-                    "title":"exhaust",
-                    "subtitle":"Avaliable spoiler for rent",                  
-                    "buttons":[
-                      {
-                        "type": "postback",
-                        "title": "Rent",
-                        "payload": "spoirent/circle/spoiler"
-                      }
-                    ]      
-                  },
                 ] 
               }
             }
           }
-        }
-        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-          genericMessage
-        ).then( response => {
-          console.log(response)
-        }).fail( error => {
-          console.log(error)
-        })
-      }
+        } 
+        var i = 0;
+        db.collection('rent').where("Type", "==", "exhaust_rent").get().then(result => { 
+          result.forEach(items => {
+            console.log(items.data())
+             var exhaustItem = {
+               "image_url": `${items.data().Img}`,
+               "title": `${items.data().Name}`,
+               "subtitle": "available spoiler for rent",
+               "buttons" : [
+                 {
+                  "type": "postback",
+                  "title": "Rent",
+                  "payload": `exhaust_rent/${items.data().payload}/exhaust`
+                 }
+               ]
+             }
+             genericMessage.message.attachment.payload.elements.push(exhaustItem);
+  
+             i = i+1
+  
+             if(i == result.size){
+               console.log(genericMessage.message.attachment.payload);
+              requestify.post(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`, 
+                genericMessage
+              ).then( response => {
+              }).fail( error => {
+                console.log(error)
+              })
+             }
+           })
+          
+         })
+          }
       //.................................................................................................................
-        //database spoiler 
-        if(userInput.includes('spoirent/')){
+        //database exhaust
+        if(userInput.includes('exhaust_rent/')){
           var userPayload = userInput.split('/')
           var rentType = userPayload[0]
-          var spoi = userPayload[1]
+          var exhaust = userPayload[1]
           var brand = userPayload[2]
           var profileLink = 'https://graph.facebook.com/'+webhook_event.sender.id+'?fields=first_name,last_name&access_token='+pageaccesstoken
           var userName = []
@@ -838,17 +838,17 @@ app.post('/webhook', (req, res) => {
                        {
                          "type": "web_url",
                          "title": "One Month:20000",
-                         "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${spoi}/${brand}/1/20000/${userName}`
+                         "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${exhaust}/${brand}/1/20000/${userName}`
                        },
                        {
                          "type": "web_url",
                          "title": "Two Months:30000",
-                         "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${spoi}/${brand}/2/30000/${userName}`
+                         "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${exhaust}/${brand}/2/30000/${userName}`
                        },
                        {
                          "type": "web_url",
                          "title": "Three Months:40000",
-                         "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${spoi}/${brand}/3/40000/${userName}`
+                         "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${exhaust}/${brand}/3/40000/${userName}`
                        },  
                      ]      
                    },
@@ -866,6 +866,10 @@ app.post('/webhook', (req, res) => {
          })
           })
        }
+
+       //..........................................................................................................\
+
+       //car par trade start
       
        if(userInput == 'tradecar'){
         let genericMessage = {
