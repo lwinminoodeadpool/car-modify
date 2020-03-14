@@ -781,7 +781,7 @@ app.post('/webhook', (req, res) => {
              var exhaustItem = {
                "image_url": `${items.data().Img}`,
                "title": `${items.data().Name}`,
-               "subtitle": "available spoiler for rent",
+               "subtitle": "available exhaust for rent",
                "buttons" : [
                  {
                   "type": "postback",
@@ -918,6 +918,7 @@ app.post('/webhook', (req, res) => {
           
          })
           }
+          //..........................................................................................
           //database for steering rent
           if(userInput.includes('steering_rent/')){
             var userPayload = userInput.split('/')
@@ -1001,7 +1002,7 @@ app.post('/webhook', (req, res) => {
                var seatsItem = {
                  "image_url": `${items.data().Img}`,
                  "title": `${items.data().Name}`,
-                 "subtitle": "available steering for rent",
+                 "subtitle": "available seats for rent",
                  "buttons" : [
                    {
                     "type": "postback",
