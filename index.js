@@ -119,6 +119,8 @@ app.post('/webhook', (req, res) => {
             }
           };
           //..................................................................................................................
+          //start of function 
+
           let genericMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -151,12 +153,12 @@ app.post('/webhook', (req, res) => {
                     {
                       "title":"Rent",
                       "image_url":"https://www.logolynx.com/images/logolynx/d8/d8713bda4da556fd93992c3fe5bbb20f.jpeg",
-                      "subtitle":"You can rent car bodykit,alloy wheels and spoiler",                      
+                      "subtitle":"You can rent car parts form Curious Wheel",                      
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "Car BodyKit",
-                          "payload": "carbodykit"
+                          "title": "Head Light",
+                          "payload": "rent_headlight"
                         },
                         {
                           "type": "postback",
@@ -238,6 +240,8 @@ app.post('/webhook', (req, res) => {
           })
         }
         // end of one part 
+
+
         //...................................................................................................................................
         //star of choose one user said popular carbody kit 
         if(userInput == 'bodykit'){
@@ -412,8 +416,8 @@ app.post('/webhook', (req, res) => {
           })
         }
         //................................................................................................................................
-        //if user car bodykit for rent 
-        if(userInput == 'carbodykit'){
+        //if user rent_headlight 
+        if(userInput == 'rent_headlight'){
           let genericMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -424,89 +428,52 @@ app.post('/webhook', (req, res) => {
                 "payload":{
                   "template_type":"generic",
                   "elements":[
-                    {
-                      "image_url":"http://thumb2.zeppy.io/d/l400/pict/113862367311/bodykit-kazama-for-toyota-mark-2-110",
-                      "title":"Fortuna bodykit toyota mark 2 jzx 110",
-                      "subtitle":"Avaliable body kit for rent",                  
-                      "buttons":[
-                        {
-                          "type": "postback",
-                          "title": "Rent",
-                          "payload": "bodykitrent/fortuna/toyota"
-                        }
-                        
-                      ]      
-                    },
-                    {
-                      "image_url":"http://thumb2.zeppy.io/d/l400/pict/113862367311/bodykit-kazama-for-toyota-mark-2-110",
-                      "title":"Hippo Sleek for Toyota mark 2 jzx110",
-                      "subtitle":"Avaliable body kit for rent",                  
-                      "buttons":[
-                        {
-                          "type": "postback",
-                          "title": "Rent",
-                          "payload": "bodykitrent/hippo/toyota"
-                        }
-                        
-                      ]      
-                    },
-                    {
-                      "image_url":"http://thumb2.zeppy.io/d/l400/pict/113862367311/bodykit-kazama-for-toyota-mark-2-110",
-                      "title":"Mugen bodykit for Honda Fit(2009- 2012)",
-                      "subtitle":"Avaliable body kit for rent",                  
-                      "buttons":[
-                        {
-                          "type": "postback",
-                          "title": "Rent",
-                          "payload": "bodykitrent/mugen/honda"
-                        }
-                        
-                      ]      
-                    },
-                    {
-                      "image_url":"http://thumb2.zeppy.io/d/l400/pict/113862367311/bodykit-kazama-for-toyota-mark-2-110",
-                      "title":" iron-man bodykit for Suzuki Swift(2019)",
-                      "subtitle":"Avaliable body kit for rent",                  
-                      "buttons":[
-                        {
-                          "type": "postback",
-                          "title": "Rent",
-                          "payload": "bodykitrent/iron-man/suzuki"
-                        }
-                        
-                      ]      
-                    },
-                    {
-                      "image_url":"http://thumb2.zeppy.io/d/l400/pict/113862367311/bodykit-kazama-for-toyota-mark-2-110",
-                      "title":" santos bodykit for Suzuki Ciaz (2019)",
-                      "subtitle":"Avaliable body kit for rent",                  
-                      "buttons":[
-                        {
-                          "type": "postback",
-                          "title": "Rent",
-                          "payload": "bodykitrent/santos/suzuki"
-                        }                        
-                      ]      
-                    },
                   ] 
                 }
               }
             }
-          }
-          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
-            genericMessage
-          ).then( response => {
-            console.log(response)
-          }).fail( error => {
-            console.log(error)
-          })
-        }
+          } 
+          var i = 0;
+          db.collection('rent').where("Type", "==", "headlightrent").get().then(result => {
+             result.forEach(items => {
+               let headItem = {
+                 "image_url": items.data().Img,
+                 "title": items.data().Name,
+                 "subtitle": "available head light for rent",
+                 "buttons" : [
+                   {
+                    "type": "postback",
+                    "title": "Rent",
+                    "payload": `headlightrent/${items.data().payload}/headlight`
+                   }
+                 ]
+               }
+               genericMessage.message.attachment.payload.elements.push(headItem);
+    
+               i = i+1
+    
+               if(i == result.size){
+                requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+                  genericMessage
+                ).then( response => {
+                  console.log(response)
+                }).fail( error => {
+                  console.log(error)
+                })
+               }
+             })
+           })
+              
+              
+            }
+
+       
         //................................................................................................................................
        //database bodykit rent databse order  
-       if(userInput.includes('bodykitrent/')){
+       if(userInput.includes('headlightrent/')){
          var userPayload = userInput.split('/')
          var rentType = userPayload[0]
-         var bodyKit = userPayload[1]
+         var headlightt = userPayload[1]
          var brand = userPayload[2]
          var profileLink = 'https://graph.facebook.com/'+webhook_event.sender.id+'?fields=first_name,last_name&access_token='+pageaccesstoken
          var userName = []
@@ -532,19 +499,19 @@ app.post('/webhook', (req, res) => {
                       {
                         "type": "web_url",
                         "title": "One Month:20000",
-                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${bodyKit}/${brand}/1/20000/${userName}`,
+                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${headlightt}/${brand}/1/20000/${userName}`,
                         "webview_height_ratio": "full"
                       },
                       {
                         "type": "web_url",
                         "title": "Two Months:30000",
-                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${bodyKit}/${brand}/2/30000/${userName}`,
+                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${headlightt}/${brand}/2/30000/${userName}`,
                         "webview_height_ratio": "full"
                       },
                       {
                         "type": "web_url",
                         "title": "Three Months:40000",
-                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${bodyKit}/${brand}/3/40000/${userName}`,
+                        "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${headlightt}/${brand}/3/40000/${userName}`,
                         "webview_height_ratio": "full"
                       },                      
                     ]      
@@ -699,7 +666,7 @@ app.post('/webhook', (req, res) => {
              var spoilerItem = {
                "image_url": `${items.data().Img}`,
                "title": `${items.data().Name}`,
-               "subtitle": "available alloy for rent",
+               "subtitle": "available spoiler for rent",
                "buttons" : [
                  {
                   "type": "postback",
@@ -727,9 +694,6 @@ app.post('/webhook', (req, res) => {
             
             
           }
-
-          
-
 
        
       //.................................................................................................................
