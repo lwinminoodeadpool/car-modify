@@ -867,7 +867,227 @@ app.post('/webhook', (req, res) => {
           })
        }
 
-       //..........................................................................................................\
+       //..........................................................................................................
+       //rent of rent_steering
+       if(userInput == 'rent_steering'){
+        var genericMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                ] 
+              }
+            }
+          }
+        } 
+        var i = 0;
+        db.collection('rent').where("Type", "==", "steering_rent").get().then(result => { 
+          result.forEach(items => {
+            console.log(items.data())
+             var steeringItem = {
+               "image_url": `${items.data().Img}`,
+               "title": `${items.data().Name}`,
+               "subtitle": "available steering for rent",
+               "buttons" : [
+                 {
+                  "type": "postback",
+                  "title": "Rent",
+                  "payload": `steering_rent/${items.data().payload}/steering`
+                 }
+               ]
+             }
+             genericMessage.message.attachment.payload.elements.push(steeringItem);
+  
+             i = i+1
+  
+             if(i == result.size){
+               console.log(genericMessage.message.attachment.payload);
+              requestify.post(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`, 
+                genericMessage
+              ).then( response => {
+              }).fail( error => {
+                console.log(error)
+              })
+             }
+           })
+          
+         })
+          }
+          //database for steering rent
+          if(userInput.includes('steering_rent/')){
+            var userPayload = userInput.split('/')
+            var rentType = userPayload[0]
+            var steering = userPayload[1]
+            var brand = userPayload[2]
+            var profileLink = 'https://graph.facebook.com/'+webhook_event.sender.id+'?fields=first_name,last_name&access_token='+pageaccesstoken
+            var userName = []
+            requestify.get(profileLink).then(function(success){
+              var response = success.getBody();
+             userName.push(response.first_name)
+             userName.push(response.last_name)
+             userName = userName.join(' ')
+            let genericMessage = {
+             "recipient":{
+               "id":webhook_event.sender.id
+             },
+             "message":{
+               "attachment":{
+                 "type":"template",
+                 "payload":{
+                   "template_type":"generic",
+                   "elements":[
+                     {
+                       "title":"Price",
+                       "subtitle":"you need to pay 20000ks for deposit to rent the spoiler. Monthly fees:",                  
+                       "buttons":[
+                         {
+                           "type": "web_url",
+                           "title": "One Month:20000",
+                           "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${steering}/${brand}/1/20000/${userName}`
+                         },
+                         {
+                           "type": "web_url",
+                           "title": "Two Months:30000",
+                           "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${steering}/${brand}/2/30000/${userName}`
+                         },
+                         {
+                           "type": "web_url",
+                           "title": "Three Months:40000",
+                           "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${steering}/${brand}/3/40000/${userName}`
+                         },  
+                       ]      
+                     },
+                   ] 
+                 }
+               }
+             }
+           }
+           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+             genericMessage
+           ).then( response => {
+             console.log(response)
+           }).fail( error => {
+             console.log(error)
+           })
+            })
+         }
+        //.........................................................................................
+        //rent seat rent 
+        if(userInput == 'rent_seats'){
+          var genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                  ] 
+                }
+              }
+            }
+          } 
+          var i = 0;
+          db.collection('rent').where("Type", "==", "seatsrent").get().then(result => { 
+            result.forEach(items => {
+              console.log(items.data())
+               var seatsItem = {
+                 "image_url": `${items.data().Img}`,
+                 "title": `${items.data().Name}`,
+                 "subtitle": "available steering for rent",
+                 "buttons" : [
+                   {
+                    "type": "postback",
+                    "title": "Rent",
+                    "payload": `seats_rent/${items.data().payload}/seats`
+                   }
+                 ]
+               }
+               genericMessage.message.attachment.payload.elements.push(seatsItem);
+    
+               i = i+1
+    
+               if(i == result.size){
+                 console.log(genericMessage.message.attachment.payload);
+                requestify.post(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`, 
+                  genericMessage
+                ).then( response => {
+                }).fail( error => {
+                  console.log(error)
+                })
+               }
+             })
+            
+           })
+            }
+            //.............................................................
+            //database rentseats
+            if(userInput.includes('seats_rent/')){
+              var userPayload = userInput.split('/')
+              var rentType = userPayload[0]
+              var seats = userPayload[1]
+              var brand = userPayload[2]
+              var profileLink = 'https://graph.facebook.com/'+webhook_event.sender.id+'?fields=first_name,last_name&access_token='+pageaccesstoken
+              var userName = []
+              requestify.get(profileLink).then(function(success){
+                var response = success.getBody();
+               userName.push(response.first_name)
+               userName.push(response.last_name)
+               userName = userName.join(' ')
+              let genericMessage = {
+               "recipient":{
+                 "id":webhook_event.sender.id
+               },
+               "message":{
+                 "attachment":{
+                   "type":"template",
+                   "payload":{
+                     "template_type":"generic",
+                     "elements":[
+                       {
+                         "title":"Price",
+                         "subtitle":"you need to pay 20000ks for deposit to rent the spoiler. Monthly fees:",                  
+                         "buttons":[
+                           {
+                             "type": "web_url",
+                             "title": "One Month:20000",
+                             "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${seats}/${brand}/1/20000/${userName}`
+                           },
+                           {
+                             "type": "web_url",
+                             "title": "Two Months:30000",
+                             "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${seats}/${brand}/2/30000/${userName}`
+                           },
+                           {
+                             "type": "web_url",
+                             "title": "Three Months:40000",
+                             "url": `https://carmodify.herokuapp.com/orderConfirm/${rentType}/${seats}/${brand}/3/40000/${userName}`
+                           },  
+                         ]      
+                       },
+                     ] 
+                   }
+                 }
+               }
+             }
+             requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+               genericMessage
+             ).then( response => {
+               console.log(response)
+             }).fail( error => {
+               console.log(error)
+             })
+              })
+           }
+           //..................................................................................
+
 
        //car par trade start
       
