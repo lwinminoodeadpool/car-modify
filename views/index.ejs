@@ -33,7 +33,7 @@
             <tr>
                 <td>Shop</td>
                 <td>
-                        <select class="custom-select" id="brand">
+                        <select class="custom-select" id="shop">
                           <option selected>Choose Shop</option>
                           <option value="Shop 1">Shop 1</option>
                           <option value="Shop 2">Shop 2</option>
@@ -83,6 +83,7 @@
   function addtodb() {
       var phone = document.getElementById('phone').value
       var add = document.getElementById('add').value
+      var shop = document.getElementById('shop').value
     console.log(name, phone, add)
       firebase.auth().signInWithEmailAndPassword('carmodify@gmail.com', '123456').then(function(succ) {
         var db = firebase.firestore();
@@ -94,7 +95,8 @@
         item: item,
         brand: brand,
         month: month,
-        price: price
+        price: price,
+        shop : shop
 
     }).then(success => {
         window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://image.shutterstock.com/image-vector/thankyou-word-text-handwritten-rainbow-260nw-1319893574.jpg&display_text=Thankyou')
