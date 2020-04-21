@@ -1155,9 +1155,10 @@ app.post('/webhook', (req, res) => {
                  "subtitle": 'Price=200000Ks',                  
                     "buttons":[
                       {
-                        "type":"postback",
-                        "title":"trade",
-                        "payload":"tradeform"
+                        "type":"web_url",
+                          "url":"https://google.com",
+                          "title":"trade",
+                          "webview_height_ratio": "full"
                       }
                     ]      
                   },
