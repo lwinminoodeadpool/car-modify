@@ -100,7 +100,7 @@
     console.log(brand, phone, img, price, description);
       firebase.auth().signInWithEmailAndPassword('carmodify@gmail.com', '123456').then(function(succ) {
         var db = firebase.firestore();
-    db.collection('tradeinfo').add({
+    db.collection('tradeinfo').set({
         brand: brand,
         img: img,
         price: price,
