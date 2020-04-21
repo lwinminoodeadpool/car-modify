@@ -1138,6 +1138,42 @@ app.post('/webhook', (req, res) => {
           console.log(error)
         })
       }
+      if(userInput == 'alloywheeltrade'){
+        let genericMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "image_url":"https://www.motorsportstore.eu/eng_pl_Set-of-4-Alloy-Wheels-OZ-Racing-SUPERTURISMO-GT-6-5x15-4x100-ET37-3303_1.jpg",
+                 "title": 'Oz racing wheel alloy ',
+                 "subtitle": "Price=200000Ks",                  
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"trade",
+                        "payload":"tradeform"
+                      }
+                    ]      
+                  },
+                ] 
+              }
+            }
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+          genericMessage
+        ).then( response => {
+          console.log(response)
+        }).fail( error => {
+          console.log(error)
+        })
+      }
                   
       });
   
