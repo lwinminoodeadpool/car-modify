@@ -1152,7 +1152,7 @@ app.post('/webhook', (req, res) => {
                   {
                     "image_url":"https://www.motorsportstore.eu/eng_pl_Set-of-4-Alloy-Wheels-OZ-Racing-SUPERTURISMO-GT-6-5x15-4x100-ET37-3303_1.jpg",
                  "title": 'Oz racing wheel alloy ',
-                 "subtitle": "Price=200000Ks",                  
+                 "subtitle": 'Price=200000Ks',                  
                     "buttons":[
                       {
                         "type":"postback",
