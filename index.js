@@ -60,6 +60,10 @@ app.get('/sell', function(req,res) {
   res.render('sell')
 })
 
+app.get('/trade', function(req,res) {
+  res.render('trade')
+})
+
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));  
 
