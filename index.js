@@ -1142,6 +1142,7 @@ app.post('/webhook', (req, res) => {
           console.log(error)
         })
       }
+
       if(userInput == 'alloywheeltrade'){
         let genericMessage = {
           "recipient":{
@@ -1179,6 +1180,58 @@ app.post('/webhook', (req, res) => {
           console.log(error)
         })
       }
+      //star of buy//
+      if(userInput == 'buy'){
+        var genericMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                ] 
+              }
+            }
+          }
+        } 
+        var i = 0;
+        db.collection('buy').where("Type", "==", "buy_item").get().then(result => { 
+          result.forEach(items => {
+            console.log(items.data())
+             var spoilerItem = {
+               "image_url": `${items.data().Img}`,
+               "title": `${items.data().Name}`,
+               "subtitle": `${items.data().Price}`,
+               "buttons" : [
+                 {
+                  "type": "postback",
+                  "title": "Buy",
+                  "payload": `spoirent/${items.data().payload}/spoi`
+                 }
+               ]
+             }
+             genericMessage.message.attachment.payload.elements.push(buyItem);
+  
+             i = i+1
+  
+             if(i == result.size){
+               console.log(genericMessage.message.attachment.payload);
+              requestify.post(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`, 
+                genericMessage
+              ).then( response => {
+              }).fail( error => {
+                console.log(error)
+              })
+             }
+           })
+          
+         })
+            
+            
+          }
                   
       });
   
