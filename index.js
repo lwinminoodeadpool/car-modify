@@ -1201,7 +1201,7 @@ app.post('/webhook', (req, res) => {
         db.collection('buy').where("Type", "==", "buy_item").get().then(result => { 
           result.forEach(items => {
             console.log(items.data())
-             var spoilerItem = {
+             var buyItem = {
                "image_url": `${items.data().Img}`,
                "title": `${items.data().Name}`,
                "subtitle": `${items.data().Price}`,
@@ -1213,6 +1213,7 @@ app.post('/webhook', (req, res) => {
                  }
                ]
              }
+             genericMessage.message.attachment.payload.elements.push(buyItem);
   
              i = i+1
   
