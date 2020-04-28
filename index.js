@@ -64,6 +64,10 @@ app.get('/trade', function(req,res) {
   res.render('trade')
 })
 
+app.get('/buy', function(req,res) {
+  res.render('buy')
+})
+
   // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));  
 
@@ -1208,7 +1212,7 @@ app.post('/webhook', (req, res) => {
                "buttons" : [
                  {
                   "type": "web_url",
-                  "url":"https://carmodify.herokuapp.com/trade",
+                  "url":"https://carmodify.herokuapp.com/buy",
                   "title": "Buy",
                  }
                ]

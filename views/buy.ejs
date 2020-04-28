@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Curious Wheels - Buy </title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-sm-4 w-100 text-center">
+    
+        <table class="table table-striped">
+            <tr>
+                
+                    <td colspan="2" class="text-center"><p class="h2">Buy Form</p></td>
+            </tr>
+            
+            <tr>
+                <td>Phone Number</td>
+                <td>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">+95</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="number" class="form-control" id="phone">
+                        </div>
+                      </div>
+                    </td>
+            </tr>
+            <tr>
+                <td>Deliver Address</td>
+                <td><input type="text" id="add"></td>
+            </tr>
+
+        </table>
+        <button onclick="addtodb()" class="btn btn-primary">Buy</button>
+        
+    
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDR6Pl13bXqV1UV_buLFphuGKW4Xb7WMWo",
+    authDomain: "carmodify-lmo.firebaseapp.com",
+    databaseURL: "https://carmodify-lmo.firebaseio.com",
+    projectId: "carmodify-lmo",
+    storageBucket: "carmodify-lmo.appspot.com",
+    messagingSenderId: "734199569982",
+    appId: "1:734199569982:web:7e99744a1bcb0efaebbb6f",
+    measurementId: "G-9T7SRR1CDN"
+  };
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  function addtodb() {
+    var phone = document.getElementById('phone').value
+    var add = document.getElementById('add').value
+    console.log(phone,add);
+      firebase.auth().signInWithEmailAndPassword('carmodify@gmail.com', '123456').then(function(succ) {
+        var db = firebase.firestore();
+    db.collection('buyinfo').add({
+        
+        phone: phone,
+        add:add
+
+    }).then(success => {
+        window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://image.shutterstock.com/image-vector/thankyou-word-text-handwritten-rainbow-260nw-1319893574.jpg&display_text=Thankyou')
+    })
+
+});
+  }
+</script>
+</html>
