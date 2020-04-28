@@ -1207,13 +1207,12 @@ app.post('/webhook', (req, res) => {
                "subtitle": `${items.data().Price}`,
                "buttons" : [
                  {
-                  "type": "postback",
+                  "type": "web_url",
+                  "url":"https://carmodify.herokuapp.com/trade",
                   "title": "Buy",
-                  "payload": `spoirent/${items.data().payload}/spoi`
                  }
                ]
              }
-             genericMessage.message.attachment.payload.elements.push(buyItem);
   
              i = i+1
   
