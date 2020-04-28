@@ -206,7 +206,7 @@ app.post('/webhook', (req, res) => {
                     //start of car parts trade
                     {
                       "title":"Car part trade",
-                      "image_url":"http://nic.trade/img/trade.png",
+                      "image_url":"https://www.vbtc.vu/images/trade-logo.png",
                       "subtitle":"car part trade for same car part",                      
                       "buttons":[
                         {
