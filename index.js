@@ -183,7 +183,7 @@ app.post('/webhook', (req, res) => {
                     {
                       "title":"Rent",
                       "image_url":"https://www.logolynx.com/images/logolynx/d8/d8713bda4da556fd93992c3fe5bbb20f.jpeg",
-                      "subtitle":"You can rent car bodykit,alloy wheels and spoiler",                      
+                      "subtitle":"You can rent various car parts form us",                      
                       "buttons":[
                         {
                           "type": "postback",
@@ -207,7 +207,7 @@ app.post('/webhook', (req, res) => {
                     {
                       "title":"Car part trade",
                       "image_url":"https://www.vbtc.vu/images/trade-logo.png",
-                      "subtitle":"car part trade for same car part",                      
+                      "subtitle":"Car parts buy,sell and trade",                      
                       "buttons":[
                         {
                           "type": "postback",
