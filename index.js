@@ -92,8 +92,8 @@ app.get('/trade', function(req,res) {
 })
 
 app.get('/buy/:itemName/:itemPrice', function(req,res) {
-  var itemName = req.param.itemName;
-  var itemPrice = req.param.itemPrice;
+  var itemName = req.params.itemName;
+  var itemPrice = req.params.itemPrice;
   res.render('buy', {itemName: itemName, itemPrice: itemPrice});
 })
 
