@@ -91,8 +91,10 @@ app.get('/trade', function(req,res) {
   res.render('trade')
 })
 
-app.get('/buy', function(req,res) {
-  res.render('buy')
+app.get('/buy/:itemName/:itemPrice', function(req,res) {
+  var itemName = req.param.itemName;
+  var itemPrice = req.param.itemPrice;
+  res.render('buy', {itemName: itemName, itemPrice: itemPrice});
 })
 
   // Sets server port and logs message on success
@@ -1239,7 +1241,7 @@ app.post('/webhook', (req, res) => {
                "buttons" : [
                  {
                   "type": "web_url",
-                  "url":"https://carmodify.herokuapp.com/buy",
+                  "url":"https://carmodify.herokuapp.com/buy/"+items.data().Name+"/"+items.data().Price,
                   "title": "Buy",
                  }
                ]
