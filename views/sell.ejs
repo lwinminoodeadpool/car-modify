@@ -129,17 +129,18 @@
         var imgRef = imgStorage.child(`sell/${document.getElementById('FileLabel').innerHTML}`);
         var file = document.getElementById('img');
         imgRef.put(file.files[0]).then(function(putReturn){
-          console.log(putReturn);
-        })
-    db.collection('sell').add({
-        brand: brand,
-        price: price,
-        phone: phone,
-        description: description
+          db.collection('sell').add({
+              brand: brand,
+              img: imgRef,
+              price: price,
+              phone: phone,
+              description: description
 
-    }).then(success => {
-        //window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://image.shutterstock.com/image-vector/thankyou-word-text-handwritten-rainbow-260nw-1319893574.jpg&display_text=Thankyou')
-    })
+          }).then(success => {
+              //window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://image.shutterstock.com/image-vector/thankyou-word-text-handwritten-rainbow-260nw-1319893574.jpg&display_text=Thankyou')
+          })
+        })
+    
 
 });
   }
