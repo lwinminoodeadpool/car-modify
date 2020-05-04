@@ -1231,15 +1231,14 @@ app.post('/webhook', (req, res) => {
           }
         } 
         var i = 0;
-        var b = 1;
         db.collection('buy').where("Type", "==", "buy_item").get().then(result => { 
           if(result.size > 4){
-            var y = b*4;
+            var y = 4;
           }else{
             var y = result.size
           }
           result.forEach(items => {
-             console.log('i', i, 'y', y,'b', b)
+             console.log('i', i, 'y', y)
              var buyItem = {
                "image_url": `${items.data().Img}`,
                "title": `${items.data().Name}`,
@@ -1257,12 +1256,12 @@ app.post('/webhook', (req, res) => {
              i = i+1
              
              if(i == y){
-              genericMessage.message.attachment.payload.elements=[]
-              b=b+1;
+              
+              y=y+4;
               requestify.post(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`, 
                 genericMessage
               ).then( response => {
-                
+                genericMessage.message.attachment.payload.elements=[]
               }).fail( error => {
                 console.log(error)
               })
