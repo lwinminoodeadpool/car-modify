@@ -11,7 +11,7 @@ const admin = require('firebase-admin');
 
 var serviceAccount = JSON.parse(process.env.serviceAccount);
 
-
+var feedback = [];
 
 
 admin.initializeApp({
@@ -50,20 +50,15 @@ requestify.post('https://graph.facebook.com/v6.0/me/messenger_profile?access_tok
             "composer_input_disabled": false,
             "call_to_actions": [
                 {
-                    "type": "postback",
-                    "title": "sell",
-                    "payload": "CARE_HELP"
-                },
-                {
-                    "type": "postback",
-                    "title": "my profile",
-                    "payload": "CURATION"
-                },
-                {
                     "type": "web_url",
-                    "title": "feedback",
-                    "url": "https://www.originalcoastclothing.com/",
+                    "title": "Sell Car Parts",
+                    "url": "https://carmodify.herokuapp.com/sell",
                     "webview_height_ratio": "full"
+                },
+                {
+                    "type": "postback",
+                    "title": "Feedback",
+                    "payload": "makeFeedback"
                 }
             ]
         }
@@ -145,6 +140,30 @@ app.post('/webhook', (req, res) => {
         }
         if(webhook_event.postback){
           var userInput = webhook_event.postback.payload
+        }
+        if(feedback.includes(`${webhook_event.sender.id}`)){
+          db.collection('userFeedback').add({
+            sender: webhook_event.sender.id,
+            feedback: userInput
+          }).then(success => {
+            var num = feedback.indexOf(`${webhook_event.sender.id}`)
+            array.splice(num, 1);
+            let replyMessage = {
+              "recipient":{
+                "id":webhook_event.sender.id
+              },
+              "message":{
+                "text":"Thank you for your feedback!"
+              }
+            };
+            requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+              replyMessage
+            ).then( response => {
+              console.log(response)
+            }).fail( error => {
+              console.log(error)
+            })
+          })
         }
         if (userInput == 'Hi'){
           let welcomeMessage = {
@@ -264,20 +283,38 @@ app.post('/webhook', (req, res) => {
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             welcomeMessage
           ).then( response => {
-            console.log(response)
+            requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+              genericMessage
+            ).then( response => {
+              console.log(response)
+            }).fail( error => {
+              console.log(error)
+            })
           }).fail( error => {
             console.log(error)
           })
+          
+        }
+        // end of one part 
+        //feedback
+        if(userInput == 'makeFeedback'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "text": "Please type anything and send us we will check your feedback regularly!"
+            }
+          }
           requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
             genericMessage
           ).then( response => {
-            console.log(response)
+            feedback.push(webhook_event.sender.id);
           }).fail( error => {
             console.log(error)
           })
         }
-        // end of one part 
-
+        //end of feedback
 
         //...................................................................................................................................
         //star of choose one user said popular carbody kit 
@@ -1232,13 +1269,7 @@ app.post('/webhook', (req, res) => {
         } 
         var i = 0;
         db.collection('buy').where("Type", "==", "buy_item").get().then(result => { 
-          if(result.size > 4){
-            var y = 4;
-          }else{
-            var y = result.size
-          }
           result.forEach(items => {
-             console.log('i', i, 'y', y)
              var buyItem = {
                "image_url": `${items.data().Img}`,
                "title": `${items.data().Name}`,
@@ -1255,9 +1286,7 @@ app.post('/webhook', (req, res) => {
   
              i = i+1
              
-             if(i == y){
-              
-              y=y+4;
+             if(i == result.size){
               requestify.post(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`, 
                 genericMessage
               ).then( response => {

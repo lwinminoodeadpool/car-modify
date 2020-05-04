@@ -25,13 +25,18 @@
             
             <tr>
                 <td>Car Part photo</td>
-                <td><div class="input-group mb-3">
-                   
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="img">
-                      <label class="custom-file-label" for="img">Choose file</label>
+                <td>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                     </div>
-                  </div></td>
+                    <div class="custom-file" onchange="updateName()">
+                      <input type="file" class="custom-file-input" id="img"
+                        aria-describedby="inputGroupFileAddon01">
+                      <label class="custom-file-label" for="img" id="FileLabel">Choose file</label>
+                    </div>
+                  </div>
+                </td>
             </tr>
 
             <tr>
@@ -72,11 +77,19 @@
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
 
 <script>
+  function updateName() {
+    var filename = document.getElementById('img').value;
+    filename = filename.split("fakepath");
+    filename = filename[(filename.length -1)];
+    filename = filename.substring(1);
+    document.getElementById('FileLabel').innerHTML = filename;
+  }
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyDR6Pl13bXqV1UV_buLFphuGKW4Xb7WMWo",
@@ -93,14 +106,19 @@
   firebase.initializeApp(firebaseConfig);
   function addtodb() {
     var phone = document.getElementById('phone').value
-    var img = document.getElementById('img').value
     var price = document.getElementById('price').value
     var description = document.getElementById('description').value
     console.log(phone, img, price, description);
       firebase.auth().signInWithEmailAndPassword('carmodify@gmail.com', '123456').then(function(succ) {
         var db = firebase.firestore();
+        var storage = firebase.storage();
+        var imgStorage = storage.ref();
+        var imgRef = imgStorage.child(`items/${document.getElementById('FileLabel').innerHTML}`);
+        var file = document.getElementById('img');
+        imgRef.put(file.files[0]).then(function(putReturn){
+          imgRef.getDownloadURL().then(function(imgURL) {
     db.collection('tradeinfo').add({
-        img: img,
+        img: `${imgURL}`,
         price: price,
         phone: phone,
         description: description
@@ -108,6 +126,8 @@
     }).then(success => {
         window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://image.shutterstock.com/image-vector/thankyou-word-text-handwritten-rainbow-260nw-1319893574.jpg&display_text=Thankyou')
     })
+  })
+})
 
 });
   }
