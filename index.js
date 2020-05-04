@@ -1234,7 +1234,7 @@ app.post('/webhook', (req, res) => {
         var b = 1;
         db.collection('buy').where("Type", "==", "buy_item").get().then(result => { 
           result.forEach(items => {
-             
+             console.log('i', i, 'y', y,'b', b)
              var buyItem = {
                "image_url": `${items.data().Img}`,
                "title": `${items.data().Name}`,
@@ -1256,10 +1256,10 @@ app.post('/webhook', (req, res) => {
                var y = result.size
              }
              if(i == y){
-               console.log(genericMessage.message.attachment.payload);
               requestify.post(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`, 
                 genericMessage
               ).then( response => {
+                genericMessage.message.attachment.payload.elements=[]
                 b=b+1;
               }).fail( error => {
                 console.log(error)
