@@ -1233,6 +1233,11 @@ app.post('/webhook', (req, res) => {
         var i = 0;
         var b = 1;
         db.collection('buy').where("Type", "==", "buy_item").get().then(result => { 
+          if(result.size > 4){
+            var y = b*4;
+          }else{
+            var y = result.size
+          }
           result.forEach(items => {
              console.log('i', i, 'y', y,'b', b)
              var buyItem = {
@@ -1250,11 +1255,7 @@ app.post('/webhook', (req, res) => {
              genericMessage.message.attachment.payload.elements.push(buyItem);
   
              i = i+1
-             if(result.size > 4){
-               var y = b*4;
-             }else{
-               var y = result.size
-             }
+             
              if(i == y){
               requestify.post(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`, 
                 genericMessage
