@@ -1233,7 +1233,6 @@ app.post('/webhook', (req, res) => {
         var i = 0;
         db.collection('buy').where("Type", "==", "buy_item").get().then(result => { 
           result.forEach(items => {
-            console.log(items.data())
              var buyItem = {
                "image_url": `${items.data().Img}`,
                "title": `${items.data().Name}`,
