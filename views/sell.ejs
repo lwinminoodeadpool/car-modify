@@ -118,15 +118,20 @@
   function addtodb() {
     var brand = document.getElementById('brand').value  
     var phone = document.getElementById('phone').value
-    var img = document.getElementById('img').value
     var price = document.getElementById('price').value
     var description = document.getElementById('description').value
     console.log(brand, phone, img, price, description);
       firebase.auth().signInWithEmailAndPassword('carmodify@gmail.com', '123456').then(function(succ) {
         var db = firebase.firestore();
+        var storage = firebase.storage();
+        var imgStorage = storage.ref();
+        var imgRef = imgStorage.child(`sell/${document.getElementById('FileLabel').innerHTML}`);
+        var file = document.getElementById('img');
+        imgRef.put(file.files[0]).then(function(putReturn){
+          console.log(putReturn);
+        })
     db.collection('sell').add({
         brand: brand,
-        img: img,
         price: price,
         phone: phone,
         description: description
