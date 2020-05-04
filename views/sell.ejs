@@ -131,7 +131,7 @@
         imgRef.put(file.files[0]).then(function(putReturn){
           db.collection('sell').add({
               brand: brand,
-              img: imgRef,
+              img: `sell/${document.getElementById('FileLabel').innerHTML}`,
               price: price,
               phone: phone,
               description: description
