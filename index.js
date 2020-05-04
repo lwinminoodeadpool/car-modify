@@ -43,6 +43,33 @@ const db = admin.firestore();
   console.log(error)
 })
 
+requestify.post('https://graph.facebook.com/v6.0/me/messenger_profile?access_token='+pageaccesstoken, {
+    "persistent_menu": [
+        {
+            "locale": "default",
+            "composer_input_disabled": false,
+            "call_to_actions": [
+                {
+                    "type": "postback",
+                    "title": "sell",
+                    "payload": "CARE_HELP"
+                },
+                {
+                    "type": "postback",
+                    "title": "my profile",
+                    "payload": "CURATION"
+                },
+                {
+                    "type": "web_url",
+                    "title": "feedback",
+                    "url": "https://www.originalcoastclothing.com/",
+                    "webview_height_ratio": "full"
+                }
+            ]
+        }
+    ]
+}).then(success=>{console.log(success)});
+
 app.set('view engine', 'ejs');
 app.set('views', __dirname+'/views')
 
