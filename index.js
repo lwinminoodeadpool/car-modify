@@ -147,7 +147,7 @@ app.post('/webhook', (req, res) => {
             feedback: userInput
           }).then(success => {
             var num = feedback.indexOf(`${webhook_event.sender.id}`)
-            array.splice(num, 1);
+            feedback.splice(num, 1);
             let replyMessage = {
               "recipient":{
                 "id":webhook_event.sender.id
