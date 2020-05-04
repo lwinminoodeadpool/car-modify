@@ -1257,11 +1257,12 @@ app.post('/webhook', (req, res) => {
              i = i+1
              
              if(i == y){
+              genericMessage.message.attachment.payload.elements=[]
+              b=b+1;
               requestify.post(`https://graph.facebook.com/v6.0/me/messages?access_token=${pageaccesstoken}`, 
                 genericMessage
               ).then( response => {
-                genericMessage.message.attachment.payload.elements=[]
-                b=b+1;
+                
               }).fail( error => {
                 console.log(error)
               })
