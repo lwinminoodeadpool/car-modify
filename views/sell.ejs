@@ -96,6 +96,8 @@
 <script>
   function updateName() {
     var filename = document.getElementById('img').value;
+    filename = filename.split("/");
+    filename = filename[(filename.length -1)];
     document.getElementById('FileLabel').innerHTML = filename;
   }
   // Your web app's Firebase configuration
