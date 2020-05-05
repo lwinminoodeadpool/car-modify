@@ -20,7 +20,7 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-  const pageaccesstoken = 'EAAhuvKStHYYBALTxZCuuVFy1dUwTDCvBvjgFa1J7VLnosst12RZB5WnrsZB3NG7HFOnJ18I2DzHrvZAFuQnnOzlgtgk95ZAZBNQBuoQtxlQBcnTZA6WWvSXRrFvvv95TmzyN4ylrLLeyGFJHHOG06tCEPZCeYdoaUnSNXyTBwlyz9AZDZD'
+  const pageaccesstoken = 'EAAhuvKStHYYBALTrFLQsJ08yovjEbk8vO1OjHEH4mP4eKxKSi7ZC3AvF0YESrSJ5rn8ZABAAkW27gp6NQj68iK1ri7CTF3SQTE3AZCH82q3Jj2o1pDHC2vhFAZAFMkHy4TZCTfAOeYLJiam2jRzKNYDByd00ZBZAztKzWI2oRjs8wZDZD'
 
   requestify.post(`https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageaccesstoken}`, 
   {
