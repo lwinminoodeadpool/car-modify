@@ -253,7 +253,7 @@ app.post('/webhook', (req, res) => {
                     //end of car part rent 
                     //start of car parts trade
                     {
-                      "title":"Car part trade",
+                      "title":"Car parts",
                       "image_url":"https://www.vbtc.vu/images/trade-logo.png",
                       "subtitle":"Car parts buy,sell and trade",                      
                       "buttons":[
