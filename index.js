@@ -846,7 +846,93 @@ app.post('/webhook', (req, res) => {
                         {
                           "type":"phone_number",
                           "title":"call now",
-                          "payload":"+95 9254 575 529"
+                          "payload":"09 254 575 529"
+                        }
+                        
+                      ]      
+                    }
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+        //car shop 
+        if(userInput =='rio'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"Rio Racing",
+                      "subtitle":"Recommended shop",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://web.facebook.com/rioracingmotorsport",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        {
+                          "type":"phone_number",
+                          "title":"call now",
+                          "payload":"09250877766"
+                        }
+                        
+                      ]      
+                    }
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+        ///car shop 
+        if(userInput =='prr'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"Pro Racing",
+                      "subtitle":"Recommended shop",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://web.facebook.com/Pro.racing.mm",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        {
+                          "type":"phone_number",
+                          "title":"call now",
+                          "payload":"09 971 546756"
                         }
                         
                       ]      
