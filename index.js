@@ -381,7 +381,7 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                         "type":"postback",
-                        "title":"Naing Car bodykit Modified",
+                        "title":"Naing Car bodykit",
                         "payload":"ncb"
                       },
                       {
@@ -392,7 +392,7 @@ app.post('/webhook', (req, res) => {
                       {
                         "type":"postback",
                         "title":"Pro Racing",
-                        "payload":"akrap"
+                        "payload":"prr"
                       },
                     ]
                     }
@@ -821,6 +821,38 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
+        //car shops 
+        if(userInput =='ncb'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "type":"web_url",
+                      "url":"https://carmodify.herokuapp.com/sellhttps://web.facebook.com/naingcarbodykit",
+                      "title":"shop fb page",
+                      "webview_height_ratio": "full"
+                    },
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+
         //start car interior 
         if(userInput == 'interior'){
           let genericMessage = {
