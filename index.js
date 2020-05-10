@@ -425,7 +425,7 @@ app.post('/webhook', (req, res) => {
                         {
                           "type": "postback",
                           "title": "back",
-                          "payload": "bodykic"
+                          "payload": "bodykit"
                         },
                         
                       ]      
@@ -438,7 +438,7 @@ app.post('/webhook', (req, res) => {
                         {
                           "type": "postback",
                           "title": "back",
-                          "payload": "bodyki"
+                          "payload": "bodykit"
                         },
                         
                       ]      
@@ -451,7 +451,7 @@ app.post('/webhook', (req, res) => {
                         {
                           "type": "postback",
                           "title": "back",
-                          "payload": "bodyki"
+                          "payload": "bodykit"
                         },
                         
                       ]      
@@ -460,6 +460,84 @@ app.post('/webhook', (req, res) => {
                       "title":"Maruti body kit",
                       "image_url":"https://www.team-bhp.com/forum/attachments/official-new-car-reviews/1429330d1445263563-maruti-ciaz-official-review-marutisuzukiciazrs12.jpg",
                       "subtitle":"For Suzuki Ciaz 2018",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodyki"
+                        },
+                        
+                      ]      
+                    },
+                   
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+        //bodykit 
+        if(userInput =='ak'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":" Amuse body kit",
+                      "image_url":"https://i.pinimg.com/originals/8b/f6/87/8bf687913e1c7bf79e691fde6eb28092.jpg",
+                      "subtitle":"For Nissan Fair Lady 350 and 370 ",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    },
+                    {
+                      "title":" body kit",
+                      "image_url":"https://live.staticflickr.com/6125/5924279283_9f0ef25eb4_b.jpg",
+                      "subtitle":"For Nissan Fair Lady 350 and 370 ",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    },
+                    {
+                      "title":" body kit",
+                      "image_url":"https://ae01.alicdn.com/kf/Hd2cdc0690b494d82b040a5dc93d6ca5fo/FRP-AMUSE-Front-Bumper-For-Nissan-Z33-350z-Infiniti-G35-2003-2008-Coupe-2Door-AM-Style.jpg_640x640q70.jpg",
+                      "subtitle":"For Nissan Fair Lady 350 and 370 ",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    },
+                    {
+                      "title":" body kit",
+                      "image_url":"",
+                      "subtitle":"For ",
                       "buttons":[
                         {
                           "type": "postback",
