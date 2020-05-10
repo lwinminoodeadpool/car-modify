@@ -406,7 +406,7 @@ app.post('/webhook', (req, res) => {
         }
         //end of popular carbody kit 
         // car bodykit 
-        if(userInput == 'ik'){
+        if(userInput =='ik'){
           let genericMessage = {
             "recipient":{
               "id":webhook_event.sender.id
@@ -464,7 +464,7 @@ app.post('/webhook', (req, res) => {
                         {
                           "type": "postback",
                           "title": "back",
-                          "payload": ""
+                          "payload": "bac"
                         },
                         
                       ]      
