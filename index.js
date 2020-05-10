@@ -348,8 +348,8 @@ app.post('/webhook', (req, res) => {
                         {
 
                           "type": "postback",
-                          "title":"side skirt",
-                          "payload":"ss"
+                          "title":"Mugen body kit",
+                          "payload":"mg"
                         }
                       ]      
                     },
@@ -496,7 +496,7 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                      "title":" Amuse body kit",
+                      "title":"Amuse body kit",
                       "image_url":"https://i.pinimg.com/originals/8b/f6/87/8bf687913e1c7bf79e691fde6eb28092.jpg",
                       "subtitle":"For Nissan Fair Lady 350 and 370 ",
                       "buttons":[
@@ -509,7 +509,7 @@ app.post('/webhook', (req, res) => {
                       ]      
                     },
                     {
-                      "title":" body kit",
+                      "title":"Amuse body kit",
                       "image_url":"https://live.staticflickr.com/6125/5924279283_9f0ef25eb4_b.jpg",
                       "subtitle":"For Nissan Fair Lady 350 and 370 ",
                       "buttons":[
@@ -522,7 +522,7 @@ app.post('/webhook', (req, res) => {
                       ]      
                     },
                     {
-                      "title":" body kit",
+                      "title":"Amuse body kit",
                       "image_url":"https://ae01.alicdn.com/kf/Hd2cdc0690b494d82b040a5dc93d6ca5fo/FRP-AMUSE-Front-Bumper-For-Nissan-Z33-350z-Infiniti-G35-2003-2008-Coupe-2Door-AM-Style.jpg_640x640q70.jpg",
                       "subtitle":"For Nissan Fair Lady 350 and 370 ",
                       "buttons":[
@@ -533,21 +533,7 @@ app.post('/webhook', (req, res) => {
                         },
                         
                       ]      
-                    },
-                    {
-                      "title":" body kit",
-                      "image_url":"",
-                      "subtitle":"For ",
-                      "buttons":[
-                        {
-                          "type": "postback",
-                          "title": "back",
-                          "payload": "bodyki"
-                        },
-                        
-                      ]      
-                    },
-                   
+                    }
                   ] 
                 }
               }
@@ -561,7 +547,83 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
-
+        //bodykit
+        if(userInput =='mg'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"Mugan body kit",
+                      "image_url":"https://cdn.motor1.com/images/mgl/BNw9j/s1/2013-408121-2014-honda-fit-by-mugen-06-09-20131.jpg",
+                      "subtitle":"For honda fit",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    },
+                    {
+                      "title":"Mugan body kit",
+                      "image_url":"https://wallup.net/wp-content/uploads/2019/09/230823-2014-mugen-honda-fit-r-s-tuning-748x561.jpg",
+                      "subtitle":"For honda fit",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    },
+                    {
+                      "title":"Mugan body kit",
+                      "image_url":"https://performancedrive.com.au/wp-content/uploads/2013/06/Mugen-2013-Honda-Civic-sedan-bodykit.jpg",
+                      "subtitle":"For Honda Civic",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    },
+                    {
+                      "title":"Mugan body kit",
+                      "image_url":"https://img.gta5-mods.com/q95/images/2008-honda-civic-type-r-fd2-add-on-rhd-mugen-j-s-racing/89b0d9-46615cd4b31c8701833e2f7c2c7f9e2f0608ffb7.jpg",
+                      "subtitle":"For Honda Civic",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    },
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
         //start car interior 
         if(userInput == 'interior'){
           let genericMessage = {
