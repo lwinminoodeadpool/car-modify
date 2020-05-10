@@ -834,11 +834,18 @@ app.post('/webhook', (req, res) => {
                   "template_type":"generic",
                   "elements":[
                     {
-                      "type":"web_url",
-                      "url":"https://carmodify.herokuapp.com/sellhttps://web.facebook.com/naingcarbodykit",
-                      "title":"shop fb page",
-                      "webview_height_ratio": "full"
-                    },
+                      "title":"Naing car body kit",
+                      "subtitle":"Recommended shop",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://carmodify.herokuapp.com/sellhttps://web.facebook.com/naingcarbodykit",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        
+                      ]      
+                    }
                   ] 
                 }
               }
@@ -852,7 +859,6 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
-
         //start car interior 
         if(userInput == 'interior'){
           let genericMessage = {
