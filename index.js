@@ -59,7 +59,12 @@ requestify.post('https://graph.facebook.com/v6.0/me/messenger_profile?access_tok
                     "type": "postback",
                     "title": "Feedback",
                     "payload": "makeFeedback"
-                }
+                },
+                {
+                  "type": "postback",
+                  "title": "Menu",
+                  "payload": "Hi"
+              }
             ]
         }
     ]
@@ -1047,11 +1052,8 @@ app.post('/webhook', (req, res) => {
          })
           })
        }
-       ///...............................................................................................
-       
-      //........................................................................................................................
+       ///..............................................................................................
       //start of rent exhaust 
-     
       if(userInput == 'rent_exhaust'){
         var genericMessage = {
           "recipient":{
