@@ -839,10 +839,15 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type":"web_url",
-                          "url":"https://carmodify.herokuapp.com/sellhttps://web.facebook.com/naingcarbodykit",
+                          "url":"https://web.facebook.com/naingcarbodykit",
                           "title":"Shop page",
                           "webview_height_ratio": "full"
                         },
+                        {
+                          "type":"phone_number",
+                          "title":"call now",
+                          "payload":"+95 9254 575 529"
+                        }
                         
                       ]      
                     }
