@@ -359,7 +359,7 @@ app.post('/webhook', (req, res) => {
                       ]      
                     },
                     {
-                      "title":"RIM and tier",
+                      "title":"RIM and Tier",
                       "buttons":[{
                         "type":"postback",
                         "title":"Work Wheel Alloy",
@@ -371,27 +371,27 @@ app.post('/webhook', (req, res) => {
                       },
                       {
                         "type":"postback",
-                        "title":"Tier recommandation",
+                        "title":"Tires recommandation",
                         "payload":"tr"
                       }
                       ]
                     },
                     {
-                      "title":"exhaust",
+                      "title":"Car Modify Shops",
                       "buttons":[
                         {
                         "type":"postback",
-                        "title":"HKS",
-                        "payload":"hks"
+                        "title":"Naing Car bodykit Modified",
+                        "payload":"ncb"
                       },
                       {
                       "type":"postback",
-                      "title":"Armytrix",
-                      "payload":"arm"
+                      "title":"Rio Racing",
+                      "payload":"rio"
                       },
                       {
                         "type":"postback",
-                        "title":"akrapovic",
+                        "title":"Pro Racing",
                         "payload":"akrap"
                       },
                     ]
@@ -469,7 +469,7 @@ app.post('/webhook', (req, res) => {
                         {
                           "type": "postback",
                           "title": "back",
-                          "payload": "bodyki"
+                          "payload": "bodykit"
                         },
                         
                       ]      
@@ -616,6 +616,198 @@ app.post('/webhook', (req, res) => {
                         
                       ]      
                     },
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+        //alloy and tier 
+        if(userInput =='wwa'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"Wrok wheel alloy",
+                      "image_url":"https://img.favpng.com/16/11/4/car-work-wheels-rim-alloy-wheel-png-favpng-tAvxnPPF6c20CDRvamcXrgfcd.jpg",
+                      "subtitle":"Avaliable in 16' 18",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    },
+                    {
+                      "title":"Wrok wheel alloy",
+                      "image_url":"https://img.favpng.com/3/10/5/alloy-wheel-tire-work-wheels-toyota-crown-png-favpng-B3zQacpsyy0v8nELJgpyFjri0.jpg",
+                      "subtitle":"Avaliable in 16' 18",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    },
+                    {
+                      "title":"Wrok wheel alloy",
+                      "image_url":"https://img.favpng.com/13/10/12/car-work-wheels-alloy-wheel-nissan-png-favpng-tbiZ4Bey2AbLm7hJr5vp1UJ1P.jpg",
+                      "subtitle":"Avaliable in 16' 18'",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    }
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+        //alloy and tier 
+        if(userInput =='bbs'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"BBS alloy",
+                      "image_url":"https://cdn.imgbin.com/21/21/25/imgbin-car-bbs-kraftfahrzeugtechnik-rim-alloy-wheel-bmw-car-9p2ZG97LnJErDEK9405fRu7U5.jpg",
+                      "subtitle":"Avaliable in 16' 18",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    },
+                    {
+                      "title":"BBS alloy",
+                      "image_url":"https://img.favpng.com/16/19/20/car-bbs-kraftfahrzeugtechnik-porsche-alloy-wheel-bmw-png-favpng-HSNevGdJRV532Fc6FyTATvtxP.jpg",
+                      "subtitle":"Avaliable in 16' 18",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    },
+                    {
+                      "title":"BBS alloy",
+                      "image_url":"https://www.pngitem.com/pimgs/m/424-4246273_car-wheel-apr-directory-listing-for-includes-img.png",
+                      "subtitle":"Avaliable in 16' 18'",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    }
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+        //tier 
+        if(userInput =='tr'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"Maxxis Tire",
+                      "image_url":"https://www.tyremarket.com/tyremantra/wp-content/uploads/2017/05/Maxxis-Car-Tyres-e1494579301416.jpg",
+                      "subtitle":"Recommended brand",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    },
+                    {
+                      "title":"Michelin",
+                      "image_url":"https://qwikfixwheeltyre.com/img/photo/tyre5.jpg",
+                      "subtitle":"Recommended brand",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    },
+                    {
+                      "title":"Yokohama Tire",
+                      "image_url":"https://www.pngitem.com/pimgs/m/105-1056950_7-yokohama-tire-logo-hd-png-download.png",
+                      "subtitle":"Recommended brand'",
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "bodykit"
+                        },
+                        
+                      ]      
+                    }
                   ] 
                 }
               }
