@@ -200,12 +200,12 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "car body",
+                          "title": "Car Body",
                           "payload": "bodykit"
                         },
                         {
                           "type": "postback",
-                          "title": "Car interior",
+                          "title": "Car Interior",
                           "payload": "interior"
                         }
                       ]      
@@ -246,12 +246,12 @@ app.post('/webhook', (req, res) => {
                         },
                         {
                           "type": "postback",
-                          "title": "steering",
+                          "title": "Steering",
                           "payload": "rent_steering"
                         },
                         {
                           "type": "postback",
-                          "title": "seats",
+                          "title": "Seats",
                           "payload": "rent_seats"
                         }
                       ]      
@@ -266,7 +266,7 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "Car part trade",
+                          "title": "Trade",
                           "payload": "tradecar"
                         },
                         {
