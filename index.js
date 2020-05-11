@@ -377,7 +377,7 @@ app.post('/webhook', (req, res) => {
                       ]
                     },
                     {
-                      "title":"Popular Car Modify Shops",
+                      "title":"Popular Car Modify Shops ✔️",
                       "buttons":[
                         {
                         "type":"postback",
@@ -791,7 +791,7 @@ app.post('/webhook', (req, res) => {
                     {
                       "title":"BBS alloy",
                       "image_url":"https://cdn.imgbin.com/21/21/25/imgbin-car-bbs-kraftfahrzeugtechnik-rim-alloy-wheel-bmw-car-9p2ZG97LnJErDEK9405fRu7U5.jpg",
-                      "subtitle":"Avaliable in 16' 18\nAvaliable in\nRio racing",
+                      "subtitle":"Avaliable in 16' 18'\nAvaliable in\nRio racing",
                       "buttons":[
                         {
                           "type":"web_url",
@@ -810,7 +810,7 @@ app.post('/webhook', (req, res) => {
                     {
                       "title":"BBS alloy",
                       "image_url":"https://img.favpng.com/16/19/20/car-bbs-kraftfahrzeugtechnik-porsche-alloy-wheel-bmw-png-favpng-HSNevGdJRV532Fc6FyTATvtxP.jpg",
-                      "subtitle":"Avaliable in 16' 18\nAvaliable in\nRio racing",
+                      "subtitle":"Avaliable in 16' 18'\nAvaliable in\nRio racing",
                       "buttons":[
                         {
                           "type":"web_url",
@@ -909,7 +909,7 @@ app.post('/webhook', (req, res) => {
                       ]      
                     },
                     {
-                      "title":"Yokohama Tire",
+                      "title":"Yokohama",
                       "image_url":"https://www.pngitem.com/pimgs/m/105-1056950_7-yokohama-tire-logo-hd-png-download.png",
                       "subtitle":"Recommended brand\nAvaliable in\nKo Kyi Soe Tire and alloy",
                       "buttons":[
@@ -954,7 +954,7 @@ app.post('/webhook', (req, res) => {
                   "elements":[
                     {
                       "title":"Naing car body kit",
-                      "subtitle":"Recommended shop",
+                      "subtitle":"Verified shop ☑️",
                       "buttons":[
                         {
                           "type":"web_url",
@@ -997,7 +997,7 @@ app.post('/webhook', (req, res) => {
                   "elements":[
                     {
                       "title":"Rio Racing",
-                      "subtitle":"Recommended shop",
+                      "subtitle":"Verified shop ☑️",
                       "buttons":[
                         {
                           "type":"web_url",
@@ -1040,7 +1040,7 @@ app.post('/webhook', (req, res) => {
                   "elements":[
                     {
                       "title":"Pro Racing",
-                      "subtitle":"Recommended shop",
+                      "subtitle":"Verified shop ☑️",
                       "buttons":[
                         {
                           "type":"web_url",
