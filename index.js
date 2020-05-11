@@ -1069,6 +1069,7 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
+        //---------------------
         //start car interior 
         if(userInput == 'interior'){
           let genericMessage = {
@@ -1086,43 +1087,24 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "Seats",
-                          "payload": "seats"
+                          "title": "Window Flim",
+                          "payload": "wf"
                         },
                         {
                           "type": "postback",
-                          "title": "steering",
-                          "payload": "steering"
+                          "title": "Black Box",
+                          "payload": "bbx"
                         },
                         {
                           "type":"postback",
-                          "title":"window flims",
-                          "payload":"windowf"
+                          "title":"Sound system",
+                          "payload":"ssy"
                         }
                       ]      
                     },
+                    
                     {
-                      "title":"interior modified suggestion",                     
-                      "buttons":[
-                        {
-                          "type": "postback",
-                          "title": "Audio",
-                          "payload": "audioo"
-                        },
-                        {
-                          "type": "postback",
-                          "title": "Camera",
-                          "payload": "camera"
-                        },
-                        {
-                          "type": "postback",
-                          "title": "Floor mat",
-                          "payload": "floor_mat"
-                        }
-                      ]      
-                    },
-                    {
-                      "title":"interior modified shops location",                     
+                      "title":"Popular interior modified shops ☑️",                     
                       "buttons":[
                         {
                           "type": "postback",
@@ -1154,7 +1136,217 @@ app.post('/webhook', (req, res) => {
             console.log(error)
           })
         }
-        //................................................................................................................................
+        //car window flim 
+        if(userInput =='wf'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"3M window Flim",
+                      "image_url":"https://image.made-in-china.com/43f34j00bOiEpRgMqfzh/Safety-Privacy-3m-Solar-Window-Film.jpg",
+                      "subtitle":"Avaliable in\nBateThar-AutoArt",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://web.facebook.com/batetharautoart",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "interior"
+                        },
+                      ]      
+                    },
+                    {
+                      "title":"samiJDM AUTOMOTIVE FILM",
+                      "image_url":"https://autoquarterly.com/wp-content/uploads/2018/06/Tesla-Motors-Model-S-Window-Tint-Prestige-PhotoSync-film-installed-after-7-min-1.jpg",
+                      "subtitle":"Avaliable in\nA1 Car Window Film,Ppf & Coating",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://web.facebook.com/A1DETAILINGWAIZAYANTAR",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "interior"
+                        },
+                        
+                      ]      
+                    },
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+        //car black box
+        if(userInput =='bbx'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"Blaupunkt car black box",
+                      "image_url":"https://www.blaupunkt.com/uploads/tx_ddfproductsbp/BPDV165-1_0.jpg",
+                      "subtitle":"Avaliable in\nPro racing",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://web.facebook.com/Pro.racing.mm",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "interior"
+                        },
+                      ]      
+                    },
+                    {
+                      "title":"i-Drive car black box",
+                      "image_url":"https://media.karousell.com/media/photos/products/2018/05/11/idrive_i11_in_car_camera_black_box_full_hd_frontback_1526038133_a1483198.jpg",
+                      "subtitle":"Avaliable in\nPro racing",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://web.facebook.com/Pro.racing.mm",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "interior"
+                        },
+                        
+                      ]      
+                    },
+                    {
+                      "title":"Hella car black box",
+                      "image_url":"https://c.76.my/Malaysia/hella-dr760-driving-recorder-wifi-fhd-2-channel-sgwangacc-1807-11-sgwangacc@9.jpg",
+                      "subtitle":"Avaliable in\nPro racing",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://web.facebook.com/Pro.racing.mm",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "interior"
+                        },
+                        
+                      ]      
+                    },
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+        //car sound system 
+        if(userInput =='ssy'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"Blaupunkt car speaker",
+                      "image_url":"https://images-na.ssl-images-amazon.com/images/I/51b1oIlHlZL._SX466_.jpg",
+                      "subtitle":"Avaliable in\nPro racing",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://web.facebook.com/Pro.racing.mm",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "interior"
+                        },
+                      ]      
+                    },
+                    {
+                      "title":"Blaupunkt car woofer",
+                      "image_url":"https://c.76.my/Malaysia/blaupunkt-gtr-130-compact-active-subwoofer-100w-rms-12volts-1908-27-12volts@2.jpg",
+                      "subtitle":"Avaliable in\nPro racing",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://web.facebook.com/Pro.racing.mm",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "back",
+                          "payload": "interior"
+                        },
+                        
+                      ]      
+                    },
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+        //car popular modify shop 
+
+
+
+
+
         //star of rent session 
         //if user rent_headlight 
         if(userInput == 'rent_headlight'){
