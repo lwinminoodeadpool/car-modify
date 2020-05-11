@@ -275,7 +275,7 @@ app.post('/webhook', (req, res) => {
                         },
                         {
                           "type":"web_url",
-                          "url":"https://carmodify.herokuapp.com/sell",
+                          "url":"https://carmodify.herokuapp.com/selltous",
                           "title":"Sell to us",
                           "webview_height_ratio": "full"
                         },
