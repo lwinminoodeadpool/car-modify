@@ -2258,7 +2258,7 @@ app.post('/webhook', (req, res) => {
           console.log(error)
         })
       }
-
+      //alloy wheel trade
       if(userInput == 'alloywheeltrade'){
         let genericMessage = {
           "recipient":{
@@ -2274,6 +2274,82 @@ app.post('/webhook', (req, res) => {
                     "image_url":"https://www.motorsportstore.eu/eng_pl_Set-of-4-Alloy-Wheels-OZ-Racing-SUPERTURISMO-GT-6-5x15-4x100-ET37-3303_1.jpg",
                  "title": 'Oz racing wheel alloy ',
                  "subtitle": 'Price=200000Ks',                  
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                          "url":"https://carmodify.herokuapp.com/trade",
+                          "title":"trade",
+                          "webview_height_ratio": "full"
+                      }
+                    ]      
+                  },
+                ] 
+              }
+            }
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+          genericMessage
+        ).then( response => {
+          console.log(response)
+        }).fail( error => {
+          console.log(error)
+        })
+      }
+      //headlight rade 
+      if(userInput == 'headlamptrade'){
+        let genericMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "image_url":"https://d1f7geppf3ca7.cloudfront.net/origin/488944/1569599973785_2019060617304282589.jpg",
+                 "title": 'Price:250000' ,
+                 "subtitle": 'Honda Fit modify Headlight\nFor 2014\nCondation Good ',                  
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                          "url":"https://carmodify.herokuapp.com/trade",
+                          "title":"trade",
+                          "webview_height_ratio": "full"
+                      }
+                    ]      
+                  },
+                ] 
+              }
+            }
+          }
+        }
+        requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+          genericMessage
+        ).then( response => {
+          console.log(response)
+        }).fail( error => {
+          console.log(error)
+        })
+      }
+      //seat trade 
+      if(userInput == 'seattrade'){
+        let genericMessage = {
+          "recipient":{
+            "id":webhook_event.sender.id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "image_url":"https://ic.carid.com/recaro/items/255-00-ys15_1.jpg",
+                 "title": 'Price:150000' ,
+                 "subtitle": 'Recaro seat\nFor all type\n Condation Good',                  
                     "buttons":[
                       {
                         "type":"web_url",
