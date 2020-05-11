@@ -114,7 +114,7 @@
     var phone = document.getElementById('phone').value
     var price = document.getElementById('price').value
     var description = document.getElementById('description').value
-    console.log(brand, phone, img, price, description);
+    console.log( phone, img, price, description);
       firebase.auth().signInWithEmailAndPassword('carmodify@gmail.com', '123456').then(function(succ) {
         var db = firebase.firestore();
         var storage = firebase.storage();
