@@ -1113,13 +1113,33 @@ app.post('/webhook', (req, res) => {
                         },
                         {
                           "type": "postback",
-                          "title": "Sanchaung",
-                          "payload": "location_sanchaung"
+                          "title": "Rio racing",
+                          "payload": "rio"
                         },
                         {
                           "type": "postback",
-                          "title": "tarmwe",
-                          "payload": "location_tarmwe"
+                          "title": "Gloary",
+                          "payload": "gl"
+                        }
+                      ]      
+                    },
+                    {
+                      "title":"Popular interior modified shops ☑️",                     
+                      "buttons":[
+                        {
+                          "type": "postback",
+                          "title": "GTR car Accessories",
+                          "payload": "gtt"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "Casper",
+                          "payload": "casp"
+                        },
+                        {
+                          "type": "postback",
+                          "title": "Dr Polish",
+                          "payload": "dr"
                         }
                       ]      
                     }
@@ -1342,6 +1362,178 @@ app.post('/webhook', (req, res) => {
           })
         }
         //car popular modify shop 
+        //gl
+        if(userInput =='gl'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"Glory Car Accessories",
+                      "subtitle":"Verified shop ☑️",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://web.facebook.com/Glory-Car-Accessories-333620803785315",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        {
+                          "type":"phone_number",
+                          "title":"call now",
+                          "payload":" +95 09 764 646141"
+                        }
+                        
+                      ]      
+                    }
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+        //gtt
+        if(userInput =='gtt'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"GTR car decoration & accessories",
+                      "subtitle":"Verified shop ☑️",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://web.facebook.com/GTRmandalay",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        {
+                          "type":"phone_number",
+                          "title":"call now",
+                          "payload":" +95 09 431 01323"
+                        }
+                        
+                      ]      
+                    }
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+        //casp
+        if(userInput =='casp'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"Casper car sticker ,decoration&accessories",
+                      "subtitle":"Verified shop ☑️",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://web.facebook.com/Casper-car-sticker-decorationaccessories-260787930786233",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        {
+                          "type":"phone_number",
+                          "title":"call now",
+                          "payload":" +95 09 541 0110"
+                        }
+                        
+                      ]      
+                    }
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
+        //dr 
+        if(userInput =='dr'){
+          let genericMessage = {
+            "recipient":{
+              "id":webhook_event.sender.id
+            },
+            "message":{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                    {
+                      "title":"Dr. Polish",
+                      "subtitle":"Verified shop ☑️",
+                      "buttons":[
+                        {
+                          "type":"web_url",
+                          "url":"https://web.facebook.com/toekhanttoegyii",
+                          "title":"Shop page",
+                          "webview_height_ratio": "full"
+                        },
+                        {
+                          "type":"phone_number",
+                          "title":"call now",
+                          "payload":" +95 09 254 129 354"
+                        }
+                        
+                      ]      
+                    }
+                  ] 
+                }
+              }
+            }
+          }
+          requestify.post(`https://graph.facebook.com/v5.0/me/messages?access_token=${pageaccesstoken}`, 
+            genericMessage
+          ).then( response => {
+            console.log(response)
+          }).fail( error => {
+            console.log(error)
+          })
+        }
 
 
 
