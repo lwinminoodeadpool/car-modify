@@ -56,7 +56,7 @@ requestify.post('https://graph.facebook.com/v6.0/me/messenger_profile?access_tok
                  },
                 {
                     "type": "web_url",
-                    "title": "list sell car part",
+                    "title": "List sell car part",
                     "url":"https://carmodify.herokuapp.com/sell",
                     "webview_height_ratio": "full"
                 },
@@ -86,6 +86,10 @@ app.get('/orderConfirm/:rentType/:Item/:CarBrand/:Month/:price/:name', function(
 
 app.get('/sell', function(req,res) {
   res.render('sell')
+})
+
+app.get('/selltous', function(req,res) {
+  res.render('selltous')
 })
 
 app.get('/trade', function(req,res) {
