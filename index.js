@@ -323,7 +323,7 @@ app.post('/webhook', (req, res) => {
         }
         //end of feedback
 
-        //...................................................................................................................................
+
         //star of bodykit 
 
         if(userInput == 'bodykit'){
@@ -1108,8 +1108,8 @@ app.post('/webhook', (req, res) => {
                       "buttons":[
                         {
                           "type": "postback",
-                          "title": "Sule",
-                          "payload": "location_sule"
+                          "title": "Pro Racing",
+                          "payload": "prr"
                         },
                         {
                           "type": "postback",
