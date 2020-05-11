@@ -50,8 +50,13 @@ requestify.post('https://graph.facebook.com/v6.0/me/messenger_profile?access_tok
             "composer_input_disabled": false,
             "call_to_actions": [
                 {
+                "type": "postback",
+                "title": "Menu",
+                "payload": "Hi"
+                 },
+                {
                     "type": "web_url",
-                    "title": "Sell Car Parts",
+                    "title": "list sell car part",
                     "url": "https://carmodify.herokuapp.com/sell",
                     "webview_height_ratio": "full"
                 },
@@ -60,11 +65,7 @@ requestify.post('https://graph.facebook.com/v6.0/me/messenger_profile?access_tok
                     "title": "Feedback",
                     "payload": "makeFeedback"
                 },
-                {
-                  "type": "postback",
-                  "title": "Menu",
-                  "payload": "Hi"
-              }
+                
             ]
         }
     ]
@@ -271,7 +272,7 @@ app.post('/webhook', (req, res) => {
                         {
                           "type":"web_url",
                           "url":"https://carmodify.herokuapp.com/sell",
-                          "title":"Sell",
+                          "title":"Sell to us",
                           "webview_height_ratio": "full"
                         },
                         {
@@ -1535,10 +1536,6 @@ app.post('/webhook', (req, res) => {
           })
         }
 
-
-
-
-
         //star of rent session 
         //if user rent_headlight 
         if(userInput == 'rent_headlight'){
@@ -1591,7 +1588,6 @@ app.post('/webhook', (req, res) => {
               
             }
 
-       
         //................................................................................................................................
        //database head light databse order  
        if(userInput.includes('headlightrent/')){
